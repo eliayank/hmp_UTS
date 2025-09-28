@@ -10,10 +10,10 @@ export class KategoriPage implements OnInit {
 
   constructor(private router: Router) {}
 
-  goToNewsList(categoryName: string) {
-    this.router.navigate(['/news-list', categoryName]);
+  goToNewsList(namaKategori: string) {
+    this.router.navigate(['/daftar-berita', namaKategori]);
   }
-  categories = [
+  kategori = [
     { id: 1, name: 'Ekonomi', icon: 'cash-outline' },
     { id: 2, name: 'Olahraga', icon: 'football-outline' },
     { id: 3, name: 'Teknologi', icon: 'laptop-outline' }

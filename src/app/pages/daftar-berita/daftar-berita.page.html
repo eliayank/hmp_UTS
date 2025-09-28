@@ -8,10 +8,10 @@
   <ion-list>
     <ion-item *ngFor="let berita of daftarBerita">
       <ion-thumbnail slot="start">
-        <img [src]="berita.imageUrl" alt="gambar berita"/>
+        <img [src]="berita.image" alt="gambar berita"/>
       </ion-thumbnail>
       <ion-label>
-        <h2>{{berita.judul}}</h2>
+        <h2>{{berita.title}}</h2>
       </ion-label>
     </ion-item>
   </ion-list>
