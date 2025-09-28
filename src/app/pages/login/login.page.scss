@@ -1,0 +1,10 @@
+.bg-primary {
+  --background: var(--ion-color-primary); 
+}
+
+.grid-center {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
