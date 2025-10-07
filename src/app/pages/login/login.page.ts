@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
       }
     }
     if (valid) {
-      this.router.navigate(['/home'], {
+      this.router.navigate(['/daftar-berita'], {
         state: { username: this.username },
       });
       this.username = '';
