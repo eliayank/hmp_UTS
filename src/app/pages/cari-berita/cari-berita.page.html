@@ -1,13 +1,63 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>cari_berita</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cari Berita</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cari_berita</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Search Section -->
+  <div class="search-container">
+    <ion-searchbar
+      [(ngModel)]="search"
+      placeholder="Cari berita..."
+      (ionInput)="onSearchInput($event)"
+    >
+    </ion-searchbar>
+    <!-- Search Results -->
+    <div class="results-container" *ngIf="search && search.length > 0">
+      <div class="results-header">
+        <ion-text color="medium">
+          <p>{{ filteredNews.length }} hasil untuk "{{ search }}"</p>
+        </ion-text>
+      </div>
+
+      <!-- No Results -->
+      <div class="no-results" *ngIf="filteredNews.length === 0">
+        <ion-icon name="search-outline" size="large"></ion-icon>
+        <h3>Tidak ada hasil ditemukan</h3>
+        <p>Coba gunakan kata kunci yang berbeda</p>
+      </div>
+
+      <!-- News Results -->
+      <ion-list *ngIf="filteredNews.length > 0">
+        <ion-item
+          *ngFor="let news of filteredNews"
+          button
+          (click)="openNews(news)"
+          (keydown.enter)="openNews(news)"
+          class="news-item"
+        >
+          <ion-thumbnail slot="start">
+            <img [src]="news.image" [alt]="news.title" />
+          </ion-thumbnail>
+
+          <ion-label>
+            <h2>{{ news.title }}</h2>
+            <p>{{ news.summary }}</p>
+            <div>
+              <ion-chip color="primary" outline="true">
+                <ion-label>{{ news.category }}</ion-label>
+              </ion-chip>
+              <ion-text color="medium">
+                <small>{{ news.publishedDate | date:'dd MMM yyyy' }}</small>
+              </ion-text>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>
