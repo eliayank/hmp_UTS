@@ -1,77 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {ServiceberitaService} from 'src/app/serviceberita.service';
 
-export interface NewsItem {
-  id: number;
-  title: string;
-  summary: string;
-  content: string;
-  image: string;
-  category: string;
-  publishedDate: Date;
-}
+// export interface NewsItem {
+//   id: number;
+//   title: string;
+//   summary: string;
+//   content: string;
+//   image: string;
+//   category: string;
+//   publishedDate: Date;
+// }
 
 @Component({
   selector: 'app-cari-berita',
   templateUrl: './cari-berita.page.html',
   styleUrls: ['./cari-berita.page.scss'],
+  standalone: false
 })
 export class CariBeritaPage implements OnInit {
 
   search: string = '';
   selectedCategory: string = 'semua';
-  allNews: NewsItem[] = [];
-  filteredNews: NewsItem[] = [];
+  allNews: any[] = [];
+  filteredNews: any[] = [];
   isLoading: boolean = false;
 
-  constructor(private router: Router) { 
-    this.loadNews();
-  }
+  constructor(private router: Router, private beritaservice: ServiceberitaService) {
+  } 
+  
 
   ngOnInit() {
+    this.allNews = this.beritaservice.berita;
     this.filteredNews = [];
   }
 
-  loadNews() {
-    this.allNews = [
-      {
-        id: 1,
-        title: 'Perkembangan AI di Indonesia Semakin Pesat',
-        summary: 'Teknologi kecerdasan buatan mulai diterapkan di berbagai sektor industri di Indonesia...',
-        content: 'Content lengkap berita AI...',
-        image: 'assets/news/teknologi1.jpg',
-        category: 'teknologi',
-        publishedDate: new Date('2024-10-10'),
-      },
-      {
-        id: 2,
-        title: 'Ekonomi Digital Indonesia Tumbuh 20%',
-        summary: 'Pertumbuhan ekonomi digital Indonesia mencapai 20% dibandingkan tahun sebelumnya...',
-        content: 'Content lengkap berita ekonomi...',
-        image: 'assets/news/ekonomi1.jpg',
-        category: 'ekonomi',
-        publishedDate: new Date('2024-10-09'),
-      },
-      {
-        id: 3,
-        title: 'Startup Indonesia Raih Pendanaan Besar',
-        summary: 'Beberapa startup teknologi Indonesia berhasil meraih pendanaan dari investor asing...',
-        content: 'Content lengkap berita startup...',
-        image: 'assets/news/teknologi1.jpg',
-        category: 'teknologi',
-        publishedDate: new Date('2024-10-08'),
-      },
-      {
-        id: 4,
-        title: 'Liga 1 Indonesia Musim Baru Dimulai',
-        summary: 'Liga 1 Indonesia musim 2024/2025 resmi dimulai dengan pertandingan pembuka...',
-        content: 'Content lengkap berita olahraga...',
-        image: 'assets/news/teknologi1.jpg',
-        category: 'olahraga',
-        publishedDate: new Date('2024-10-07'),
-      }
-    ];
-  }
 
   onSearchInput(event: any) {
     const searchValue = event.target.value.trim();
@@ -91,7 +54,7 @@ export class CariBeritaPage implements OnInit {
     setTimeout(() => {
       this.filteredNews = this.allNews.filter(news => {
         const matchesSearch = news.title.toLowerCase().includes(term.toLowerCase()) ||
-                             news.summary.toLowerCase().includes(term.toLowerCase());
+                             news.description.toLowerCase().includes(term.toLowerCase());
         const matchesCategory = this.selectedCategory === 'semua' || 
                                news.category === this.selectedCategory;
         
@@ -115,10 +78,12 @@ export class CariBeritaPage implements OnInit {
     this.performSearch(topic);
   }
 
-  openNews(news: NewsItem) {
-    this.router.navigate(['/baca-berita'], { 
-      queryParams: { id: news.id } 
-    });
+  goToBacaBerita(id: number) {
+    this.router.navigate(['/baca-berita', id]);
+  }
+
+  averageRating(ratingArray: number[]): number {
+    return this.beritaservice.averageRating(ratingArray);
   }
 
 

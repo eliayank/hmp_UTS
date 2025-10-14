@@ -13,6 +13,7 @@ export class ServiceberitaService {
       rating: [2, 2, 3, 4, 3],
       description:
         'Perekonomian Indonesia tumbuh 5% pada tahun 2025, didorong oleh ekspor dan konsumsi domestik yang stabil.',
+      publishedDate: new Date('2024-10-10'),
     },
     {
       id: 2,
@@ -22,6 +23,7 @@ export class ServiceberitaService {
       rating: [2, 2, 4, 3],
       description:
         'Startup teknologi asal Jakarta mendapat pendanaan seri A senilai 10 juta dolar dari investor internasional.',
+      publishedDate: new Date('2024-10-09'),
     },
     {
       id: 3,
@@ -29,6 +31,7 @@ export class ServiceberitaService {
       category: ['Olahraga'],
       image: 'assets/news/olahraga1.jpg',
       rating: [3, 4, 3],
+        publishedDate: new Date('2024-10-08'),
       description:
         'Tim nasional Indonesia meraih kemenangan di final turnamen Asia lewat gol di menit akhir pertandingan.',
     },
@@ -38,6 +41,7 @@ export class ServiceberitaService {
       category: ['Teknologi'],
       image: 'assets/news/teknologi2.jpg',
       rating: [5, 4, 5, 4, 3],
+        publishedDate: new Date('2024-10-07'),
       description:
         'AI mulai digunakan di dunia pendidikan untuk membantu personalisasi proses belajar siswa di sekolah.',
     },
@@ -47,6 +51,7 @@ export class ServiceberitaService {
       category: ['Ekonomi'],
       image: 'assets/news/ekonomi1.jpg',
       rating: [2, 4, 3],
+        publishedDate: new Date('2024-10-10'),
       description:
         'BPS mencatat inflasi turun pada kuartal kedua karena harga pangan menurun dan nilai tukar stabil.',
     },
@@ -56,6 +61,7 @@ export class ServiceberitaService {
       category: ['Ekonomi', 'Teknologi'],
       image: 'assets/news/teknologi1.jpg',
       rating: [2, 5, 3, 4, 3],
+        publishedDate: new Date('2024-10-12'),
       description:
         'Teknologi AI mendorong pertumbuhan ekonomi dengan meningkatkan efisiensi dan produktivitas industri.',
     },
@@ -65,6 +71,7 @@ export class ServiceberitaService {
       category: ['Olahraga'],
       image: 'assets/news/olahraga1.jpg',
       rating: [2, 2, 1],
+        publishedDate: new Date('2024-11-27'),
       description:
         'Pemain basket asal Indonesia berhasil masuk ke NBA dan menjadi inspirasi bagi generasi muda.',
     },
@@ -74,6 +81,7 @@ export class ServiceberitaService {
       category: ['Teknologi'],
       image: 'assets/news/teknologi2.jpg',
       rating: [5],
+        publishedDate: new Date('2024-12-07'),
       description:
         'Jaringan 5G kini menjangkau banyak kota besar di Indonesia dan mendukung transformasi digital nasional.',
     },

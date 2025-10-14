@@ -36,8 +36,8 @@
         <ion-item
           *ngFor="let news of filteredNews"
           button
-          (click)="openNews(news)"
-          (keydown.enter)="openNews(news)"
+          (click)="goToBacaBerita(news.id)"
+          (keydown.enter)="goToBacaBerita(news.id)"
           class="news-item"
         >
           <ion-thumbnail slot="start">
@@ -46,7 +46,7 @@
 
           <ion-label>
             <h2>{{ news.title }}</h2>
-            <p>{{ news.summary }}</p>
+            <p>{{ news.description }}</p>
             <div>
               <ion-chip color="primary" outline="true">
                 <ion-label>{{ news.category }}</ion-label>
