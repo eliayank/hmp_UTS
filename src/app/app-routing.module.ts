@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/daftar-berita/daftar-berita.module').then( m => m.DaftarBeritaPageModule)
   },
   {
-    path: 'baca-berita',
+    path: 'baca-berita/:id',
     loadChildren: () => import('./pages/baca-berita/baca-berita.module').then( m => m.BacaBeritaPageModule)
   },
   {

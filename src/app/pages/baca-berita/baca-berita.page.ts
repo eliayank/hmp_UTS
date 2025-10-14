@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-baca-berita',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./baca-berita.page.scss'],
 })
 export class BacaBeritaPage implements OnInit {
+  id: number = 0;
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+    });
   }
-
 }

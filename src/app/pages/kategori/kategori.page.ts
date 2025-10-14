@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-kategori',
   templateUrl: './kategori.page.html',
   styleUrls: ['./kategori.page.scss'],
+  standalone: false
 })
 export class KategoriPage implements OnInit {
 

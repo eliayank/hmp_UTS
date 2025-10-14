@@ -1,30 +1,32 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Blank </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Beranda</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong><a routerLink="/login">Login</a></strong>
-    <p>
-      Start with Ionic
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-        >UI Components</a
-      >
-    </p>
+  <div id="container" class="ion-padding">
+    <ion-list lines="none">
+      <ion-card *ngFor="let berita of daftarBerita" (click)="goToBacaBerita(berita.id)">
+        <img [src]="berita.image" alt="gambar berita" />
+        <ion-card-header>
+          <ion-card-title>{{ berita.title }}</ion-card-title>
+          <ion-card-subtitle>
+            <ion-icon name="star"></ion-icon>
+            {{ averageRating(berita.rating) }}
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{ berita.description }}
+        </ion-card-content>
+        <ion-button fill="clear" (click)="goToBacaBerita(berita.id)">
+          Baca selengkapnya >
+        </ion-button>
+      </ion-card>
+    </ion-list>
   </div>
-  <ion-router-outlet id="main-content"> </ion-router-outlet>
 </ion-content>
+
