@@ -1,13 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>favorit</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Favorite</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">favorit</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card *ngFor="let berita of daftarFavorit" (click)="goToDetail(berita.id)">
+     <img *ngIf="berita.image?.length" [src]="berita.image[0]" alt="gambar berita" />
+    <ion-card-header>
+      <ion-card-title>{{ berita.title }}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-icon name="star"></ion-icon>
+        {{ averageRating(berita.rating) }}
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-text *ngIf="daftarFavorit.length === 0" color="medium">
+    <p class="ion-text-center">Belum ada berita favorit 😢</p>
+  </ion-text>
 </ion-content>

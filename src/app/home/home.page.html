@@ -11,7 +11,7 @@
   <div id="container" class="ion-padding">
     <ion-list lines="none">
       <ion-card *ngFor="let berita of daftarBerita" (click)="goToBacaBerita(berita.id)">
-        <img [src]="berita.image" alt="gambar berita" />
+        <img *ngIf="berita.image?.length" [src]="berita.image[0]" alt="gambar berita" />
         <ion-card-header>
           <ion-card-title>{{ berita.title }}</ion-card-title>
           <ion-card-subtitle>
@@ -29,4 +29,3 @@
     </ion-list>
   </div>
 </ion-content>
-

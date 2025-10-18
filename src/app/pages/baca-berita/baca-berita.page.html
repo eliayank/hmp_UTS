@@ -1,13 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>baca_berita</ion-title>
+    <ion-buttons slot="start">
+      <!-- Supaya navigasi langsung (misal klik link dari luar atau reload browser) -->
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ berita?.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">baca_berita</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- disini -->
+  <div class="gambar-berita">
+    <img *ngFor="let img of berita?.image" [src]="img" alt="gambar berita" />
+  </div>
+
+  <ion-card>
+    <ion-card-content class="container">
+      <h2>{{ berita?.title }}</h2>
+      <p>{{ berita?.description }}</p>
+      <p><strong>Kategori:</strong> {{ berita?.category.join(', ') }}</p>
+      <p>
+        <ion-icon name="star"></ion-icon>
+        {{ averageRating(berita?.rating) }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item>
+    <ion-label>Rating kamu:</ion-label>
+    <ion-buttons>
+      <ion-button *ngFor="let r of [1,2,3,4,5]" (click)="beriRating(r)">
+        <ion-icon [name]="r <= ratingUser ? 'star' : 'star-outline'" color="warning"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+
+  <ion-item>
+    <ion-input [(ngModel)]="komentar" placeholder="Tulis komentar..."></ion-input>
+    <ion-button (click)="kirimKomentar()">Kirim</ion-button>
+  </ion-item>
+
+  <ion-list *ngIf="daftarKomentar.length > 0">
+    <ion-list-header>Komentar:</ion-list-header>
+    <ion-item *ngFor="let c of daftarKomentar">
+      {{ c }}
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="toggleFavorit()" color="{{ isFavorit ? 'medium' : 'danger' }}">
+    <ion-icon [name]="isFavorit ? 'heart' : 'heart-outline'" slot="start"></ion-icon>
+    {{ isFavorit ? 'Hapus dari Favorit' : 'Tambahkan ke Favorit' }}
+  </ion-button>
 </ion-content>

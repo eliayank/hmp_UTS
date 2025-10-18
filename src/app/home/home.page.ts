@@ -9,12 +9,16 @@ import { ServiceberitaService } from '../serviceberita.service';
   standalone: false
 })
 export class HomePage {
-  daftarBerita: any[] = this.serviceberita.berita;
+  daftarBerita: any[] = [];
 
   constructor(
     private router: Router,
     private serviceberita: ServiceberitaService
   ) {}
+
+  ngOnInit() {
+    this.daftarBerita = this.serviceberita.berita;
+  }
 
   ionViewWillEnter() {
     if (!this.checkLogin()) {

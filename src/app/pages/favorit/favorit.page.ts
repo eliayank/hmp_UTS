@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ServiceberitaService } from 'src/app/serviceberita.service';
 
 @Component({
   selector: 'app-favorit',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritPage implements OnInit {
 
-  constructor() { }
+  daftarFavorit: any[] = [];
+  constructor(
+    private service: ServiceberitaService, 
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    this.daftarFavorit = this.service.getFavorit();
+  }
+
+  goToDetail(id: number) {
+    this.router.navigate(['/baca-berita', id]);
+  }
+
+  averageRating(rating: number[]) {
+    return this.service.averageRating(rating);
+  }
+  
 }

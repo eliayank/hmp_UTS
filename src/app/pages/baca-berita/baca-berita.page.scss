@@ -1,0 +1,50 @@
+.gambar-berita {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.gambar-berita img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+ 
+}
+
+ion-content {
+  display: flex;
+  justify-content: center;
+}
+
+ion-content > * {
+  width: 100%;
+}
+
+.container,
+.gambar-berita,
+ion-card,
+ion-item,
+ion-list,
+ion-button {
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+ion-card {
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 2vw;
+  font-weight: 600;
+  color: #222;
+}
+
