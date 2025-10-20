@@ -13,12 +13,16 @@ export class ServiceberitaService {
         'assets/news/ekonomi1.jpg',
         'assets/news/ekonomi2.jpg',
         'assets/news/ekonomi3.jpg',
-        'assets/news/ekonomi4.jpg'
+        'assets/news/ekonomi4.jpg',
       ],
       rating: [2, 2, 3, 4, 3],
       description:
         'Perekonomian Indonesia tumbuh 5% pada tahun 2025, didorong oleh ekspor dan konsumsi domestik yang stabil.',
       publishedDate: new Date('2024-10-10'),
+      komentar: [
+        'Ekonomi lagi bagus banget tahun ini!',
+        'Semoga terus stabil ya.',
+      ],
     },
     {
       id: 2,
@@ -28,12 +32,16 @@ export class ServiceberitaService {
         'assets/news/teknologi1.jpg',
         'assets/news/teknologi2.jpg',
         'assets/news/teknologi3.jpg',
-        'assets/news/teknologi4.jpg'
+        'assets/news/teknologi4.jpg',
       ],
       rating: [2, 2, 4, 3],
       description:
         'Startup teknologi asal Jakarta mendapat pendanaan seri A senilai 10 juta dolar dari investor internasional.',
       publishedDate: new Date('2024-10-09'),
+      komentar: [
+        'Teknologi lagi bagus banget tahun ini!',
+        'Semoga terus stabil ya.',
+      ],
     },
     {
       id: 3,
@@ -49,6 +57,10 @@ export class ServiceberitaService {
       publishedDate: new Date('2024-10-08'),
       description:
         'Tim nasional Indonesia meraih kemenangan di final turnamen Asia lewat gol di menit akhir pertandingan.',
+      komentar: [
+        'Olahraga lagi bagus banget tahun ini!',
+        'Semoga terus stabil ya.',
+      ],
     },
     {
       id: 4,
@@ -64,6 +76,10 @@ export class ServiceberitaService {
       publishedDate: new Date('2024-10-07'),
       description:
         'AI mulai digunakan di dunia pendidikan untuk membantu personalisasi proses belajar siswa di sekolah.',
+      komentar: [
+        'Teknologi lagi bagus banget tahun ini!',
+        'Semoga terus stabil ya.',
+      ],
     },
     {
       id: 5,
@@ -79,6 +95,10 @@ export class ServiceberitaService {
       publishedDate: new Date('2024-10-10'),
       description:
         'BPS mencatat inflasi turun pada kuartal kedua karena harga pangan menurun dan nilai tukar stabil.',
+      komentar: [
+        'Ekonomi lagi bagus banget tahun ini!',
+        'Semoga terus stabil ya.',
+      ],
     },
     {
       id: 6,
@@ -94,6 +114,10 @@ export class ServiceberitaService {
       publishedDate: new Date('2024-10-12'),
       description:
         'Teknologi AI mendorong pertumbuhan ekonomi dengan meningkatkan efisiensi dan produktivitas industri.',
+      komentar: [
+        'Ekonomi lagi bagus banget tahun ini!',
+        'Semoga terus stabil ya.',
+      ],
     },
     {
       id: 7,
@@ -109,6 +133,10 @@ export class ServiceberitaService {
       publishedDate: new Date('2024-11-27'),
       description:
         'Pemain basket asal Indonesia berhasil masuk ke NBA dan menjadi inspirasi bagi generasi muda.',
+      komentar: [
+        'Olahraga lagi bagus banget tahun ini!',
+        'Semoga terus stabil ya.',
+      ],
     },
     {
       id: 8,
@@ -124,6 +152,10 @@ export class ServiceberitaService {
       publishedDate: new Date('2024-12-07'),
       description:
         'Jaringan 5G kini menjangkau banyak kota besar di Indonesia dan mendukung transformasi digital nasional.',
+      komentar: [
+        'Teknologi lagi bagus banget tahun ini!',
+        'Semoga terus stabil ya.',
+      ],
     },
   ];
   constructor() {}
@@ -134,18 +166,44 @@ export class ServiceberitaService {
   }
 
   //untuk halaman favorit
-  favorit: any[] = [];
+  //favorit: any[] = [];
+  userData: {
+    rating: { [id: number]: number };
+    komentar: { [id: number]: string[] };
+    favorit: any[];
+  } = { rating: {}, komentar: {}, favorit:[] };
 
   tambahFavorit(berita: any) {
-    const sudahAda = this.favorit.find((b) => b.id === berita.id);
-    if (!sudahAda) this.favorit.push(berita);
+    const sudahAda = this.userData.favorit.find((b) => b.id === berita.id);
+    if (!sudahAda) this.userData.favorit.push(berita);
   }
 
   hapusFavorit(id: number) {
-    this.favorit = this.favorit.filter((b) => b.id !== id);
+    this.userData.favorit = this.userData.favorit.filter((b) => b.id !== id);
   }
 
   getFavorit() {
-    return this.favorit;
+    return this.userData.favorit;
+  }
+
+  //rating
+  beriRating(id: number, nilai: number, berita: any) {
+    if (this.userData.rating[id]) return; // sudah pernah rating
+    this.userData.rating[id] = nilai;
+    berita.rating.push(nilai);
+  }
+  getRatingUser(id: number) {
+    return this.userData.rating[id] || 0;
+  }
+
+  // Tambah komentar user
+  tambahKomentar(id: number, teks: string) {
+    if (!this.userData.komentar[id]) this.userData.komentar[id] = [];
+    this.userData.komentar[id].push(teks);
+  }
+
+  getKomentar(id: number) {
+    const berita = this.berita.find((b) => b.id === id);
+    return [...(berita?.komentar || []), ...(this.userData.komentar[id] || [])];
   }
 }
