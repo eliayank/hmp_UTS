@@ -35,6 +35,15 @@ const routes: Routes = [
     path: 'cari-berita',
     loadChildren: () => import('./pages/cari-berita/cari-berita.module').then( m => m.CariBeritaPageModule)
   },
+  {
+    path: 'leaderboard',
+    loadChildren: () => import('./pages/leaderboard/leaderboard.module').then( m => m.LeaderboardPageModule)
+  },
+  {
+    path: 'new-berita',
+    loadChildren: () => import('./pages/new-berita/new-berita.module').then( m => m.NewBeritaPageModule)
+  },
+
 ];
 
 @NgModule({

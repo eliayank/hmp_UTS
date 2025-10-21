@@ -48,3 +48,20 @@ h2 {
   color: #222;
 }
 
+.c-flex{
+    display: flex;
+}
+.c-ml-1{
+    margin-left: 0.3rem;
+}
+.c-ml-2{
+    margin-left: 1rem;
+}
+
+.c-items-center{
+    align-items: center;
+}
+.c-flex-center{
+    justify-content: center;
+    align-items: center;
+}

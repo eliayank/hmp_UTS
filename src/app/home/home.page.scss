@@ -11,8 +11,6 @@
   text-align: left;
 }
 
-
-
 #container strong {
   font-size: 20px;
   line-height: 26px;
@@ -29,4 +27,22 @@
 
 #container a {
   text-decoration: none;
+}
+
+.c-pb-1{
+    padding: 0px 0px 20px 0px;
+}
+.c-flex{
+    display: flex;
+}
+.c-ml-1{
+    margin-left: 0.3rem;
+}
+.c-ml-2{
+    margin-left: 1rem;
+}
+
+.c-flex-center{
+    justify-content: center;
+    align-items: center;
 }

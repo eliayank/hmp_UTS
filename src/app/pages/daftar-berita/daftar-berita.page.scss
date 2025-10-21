@@ -1,0 +1,24 @@
+.c-flex {
+    display: flex;
+}
+
+.c-ml-1 {
+    margin-left: 0.3rem;
+}
+
+.c-ml-2 {
+    margin-left: 1rem;
+}
+
+.c-flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.c-flex-col {
+    flex-direction: column;
+}
+
+.c-img {
+    width: 100%;
+}

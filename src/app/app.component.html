@@ -7,35 +7,49 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-list>
-        <ion-menu-toggle>
-          <ion-item routerLink="/cari-berita">
-            <ion-icon name="search"></ion-icon>
-            <ion-label>Search</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-item routerLink="/home">
-            <ion-icon name="home-outline"></ion-icon>
-            <ion-label>Beranda</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-item routerLink="/kategori">
-            <ion-icon name="book-outline"></ion-icon>
-            <ion-label>Kategori Berita</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
+      <ion-list class="c-container-header">
+        <div>
+            <ion-menu-toggle>
+                <ion-item routerLink="/home">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <ion-label>Beranda</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+              <ion-item routerLink="/cari-berita">
+                <ion-icon name="search"></ion-icon>
+                <ion-label>Search</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+              <ion-item routerLink="/kategori">
+                <ion-icon name="book-outline"></ion-icon>
+                <ion-label>Kategori Berita</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+                <ion-item routerLink="/favorit">
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <ion-label>My Favorite</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+                <ion-item routerLink="/leaderboard">
+                    <ion-icon name="podium-outline"></ion-icon>
+                    <ion-label>Leaderboard</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle *ngIf="">
+                <ion-item routerLink="/leaderboard">
+                    <ion-icon name="podium-outline"></ion-icon>
+                    <ion-label>Leaderboard</ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+        </div>
+        <ion-menu-toggle class="c-bottom">
           <ion-item routerLink="/login" (click)="logout()">
             <ion-icon name="log-out-outline"></ion-icon>
             <ion-label>Logout</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-item routerLink="/favorit">
-            <ion-icon name="heart-outline"></ion-icon>
-            <ion-label>My Favorite</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>

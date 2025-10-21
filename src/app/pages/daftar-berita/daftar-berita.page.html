@@ -1,32 +1,36 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/kategori"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Berita {{ kategori }}</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/kategori"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Berita {{ kategori }}</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-list>
-    <ion-item *ngFor="let berita of daftarBerita">
-      <ion-card (click)="goToBacaBerita(berita.id)">
-        <img
-          [src]="berita.image" 
-          alt="gambar berita"
-        />
-        <ion-card-header>
-          <ion-card-title>{{berita.title}}</ion-card-title>
-          <ion-card-subtitle>
-            <ion-icon name="star"></ion-icon>
-            {{averageRating(berita.rating)}}
-          </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          {{berita.description}}
-        </ion-card-content>
-        <ion-button fill="clear" (click)="goToBacaBerita(berita.id)">Baca selengkapnya ></ion-button>
-      </ion-card>
-    </ion-item>
-  </ion-list>
+    <ion-list *ngFor="let berita of daftarBerita" class="c-flex c-flex-center c-flex-col">
+        <ion-item>
+            <ion-card (click)="goToBacaBerita(berita.id)">
+                <img [src]="berita.image[0]" alt="gambar berita" class="c-img"/>
+                <ion-card-header>
+                    <ion-card-title>{{berita.title}}</ion-card-title>
+                    <ion-item class="c-flex">
+                        <ion-card-subtitle class="c-flex c-flex-center">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-text class="c-ml-1">{{averageRating(berita.rating)}}</ion-text>
+                        </ion-card-subtitle>
+                        <ion-card-subtitle class="c-flex c-flex-center c-ml-2">
+                            <ion-icon name="eye-outline">
+                            </ion-icon>
+                            <ion-text class="c-ml-1">{{berita.jumlahView.length}}</ion-text>
+                        </ion-card-subtitle>
+                    </ion-item>
+                </ion-card-header>
+                <ion-card-content>
+                    {{berita.description}}
+                </ion-card-content>
+                <ion-button fill="clear" (click)="goToBacaBerita(berita.id)">Baca selengkapnya ></ion-button>
+            </ion-card>
+        </ion-item>
+    </ion-list>
 </ion-content>
