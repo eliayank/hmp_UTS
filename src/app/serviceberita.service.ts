@@ -181,7 +181,7 @@ export class ServiceberitaService {
                 "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing",
             ],
         },
-    ];  
+    ];
 
     kategori = [
         { id: 1, name: 'Ekonomi', icon: 'cash-outline' },
@@ -192,13 +192,13 @@ export class ServiceberitaService {
     constructor() { }
 
     averageRating(rating: number[]) {
-    if (!rating || rating.length === 0) return 0;
-    else {
-      let hasil: number = 0;
-      rating.forEach((item) => (hasil += item));
-      return +(hasil / rating.length).toFixed(1);
+        if (!rating || rating.length === 0) return 0;
+        else {
+            let hasil: number = 0;
+            rating.forEach((item) => (hasil += item));
+            return +(hasil / rating.length).toFixed(1);
+        }
     }
-  }
 
     //untuk halaman favorit
     //favorit: any[] = [];
@@ -206,7 +206,8 @@ export class ServiceberitaService {
         rating: { [id: number]: number };
         komentar: { [id: number]: string[] };
         favorit: any[];
-    } = { rating: {}, komentar: {}, favorit: [] };
+        save: any[];
+    } = { rating: {}, komentar: {}, favorit: [], save: [] };
 
     tambahFavorit(berita: any) {
         const sudahAda = this.userData.favorit.find((b) => b.id == berita.id);
@@ -215,6 +216,15 @@ export class ServiceberitaService {
 
     hapusFavorit(id: number) {
         this.userData.favorit = this.userData.favorit.filter((b) => b.id != id);
+    }
+
+    tambahSave(berita: any) {
+        const sudahAda = this.userData.save.find((b) => b.id == berita.id);
+        if (!sudahAda) this.userData.save.push(berita);
+    }
+
+    hapusSave(id: number) {
+        this.userData.save = this.userData.save.filter((b) => b.id != id);
     }
 
     getFavorit() {
@@ -258,11 +268,11 @@ export class ServiceberitaService {
         return "Not Found";
     }
 
-    getKategori(){
+    getKategori() {
         return this.kategori;
     }
 
-    tambahBerita(newBerita:any){
+    tambahBerita(newBerita: any) {
         this.berita.push(newBerita);
     }
 }

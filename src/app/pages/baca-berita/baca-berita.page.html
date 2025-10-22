@@ -53,8 +53,14 @@
         </ion-item>
     </ion-list>
 
-    <ion-button expand="block" (click)="toggleFavorit()" color="{{ isFavorit ? 'medium' : 'danger' }}">
-        <ion-icon [name]="isFavorit ? 'heart' : 'heart-outline'" slot="start"></ion-icon>
-        {{ isFavorit ? 'Hapus dari Favorit' : 'Tambahkan ke Favorit' }}
-    </ion-button>
+    <ion-list class="c-flex">
+        <ion-button expand="block" (click)="toggleFavorit()" color="{{ isFavorit ? 'medium' : 'danger' }}" class="c-w-90p">
+            <ion-icon [name]="isFavorit ? 'heart' : 'heart-outline'" slot="start"></ion-icon>
+            {{ isFavorit ? 'Hapus dari Favorit' : 'Tambahkan ke Favorit' }}
+        </ion-button>
+    
+        <ion-button expand="block" (click)="saveBerita()" color="{{ isSave ? 'medium' : 'primary' }}" class="c-ml-2 c-w-8p c-flex c-flex-center">
+            <ion-icon [name]="isSave ? 'save' : 'save-outline'" class="c-w-full"></ion-icon>
+        </ion-button>
+    </ion-list>
 </ion-content>

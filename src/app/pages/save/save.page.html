@@ -3,13 +3,13 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>My Favorite</ion-title>
+        <ion-title>Save Berita</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
     <div id="container" class="ion-padding">
-        <ion-list *ngFor="let berita of daftarFavorit" lines="none" class="c-flex c-flex-center c-flex-col">
+        <ion-list *ngFor="let berita of daftarSave" lines="none" class="c-flex c-flex-center c-flex-col">
             <ion-item>
                 <ion-card (click)="goToDetail(berita.id)">
                     <img *ngIf="berita.image?.length" [src]="berita.image[0]" alt="gambar berita" />
@@ -25,7 +25,7 @@
         </ion-list>
     </div>
 
-    <ion-text *ngIf="daftarFavorit.length === 0" color="medium">
-        <p class="ion-text-center">Belum ada berita favorit 😢</p>
+    <ion-text *ngIf="daftarSave.length === 0" color="medium">
+        <p class="ion-text-center">Belum ada Save Berita 😢</p>
     </ion-text>
 </ion-content>

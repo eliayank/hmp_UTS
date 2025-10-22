@@ -10,27 +10,27 @@ export class NewBeritaPage implements OnInit {
     public alertButtons = ["Ok"];
     kategori: any[] = [];
 
-    berita:{
-        id:number,
-        title:string,
-        category:string[],
-        image:string[],
-        rating:string[],
-        description:string,
-        publishedDate:Date,
-        komentar:string[],
-        jumlahView:string[],
+    berita: {
+        id: number,
+        title: string,
+        category: string[],
+        image: string[],
+        rating: string[],
+        description: string,
+        publishedDate: Date,
+        komentar: string[],
+        jumlahView: string[],
     } = {
-        id: 0,
-        title: "",
-        category: [],
-        image: [],
-        rating: [],
-        description: '',
-        publishedDate: new Date(),
-        komentar: [],
-        jumlahView: [],
-    }
+            id: +this.beritaService.berita.length + 1,
+            title: "",
+            category: [],
+            image: [],
+            rating: [],
+            description: '',
+            publishedDate: new Date(),
+            komentar: [],
+            jumlahView: [],
+        }
 
     constructor(private beritaService: ServiceberitaService) { }
 
@@ -39,12 +39,10 @@ export class NewBeritaPage implements OnInit {
     }
 
     submitBerita() {
-        this.berita.id = +this.beritaService.berita.length-1;
-
         let year = this.berita.publishedDate.getFullYear();
         let month = this.berita.publishedDate.getMonth();
         let day = this.berita.publishedDate.getDay();
-        this.berita.publishedDate = new Date(year +"-"+month+"-"+day);
+        this.berita.publishedDate = new Date(year + "-" + month + "-" + day);
         this.beritaService.tambahBerita(this.berita);
     }
 }

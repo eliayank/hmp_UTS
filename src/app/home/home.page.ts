@@ -47,4 +47,21 @@ export class HomePage {
     averageRating(ratingArray: number[]): number {
         return this.serviceberita.averageRating(ratingArray);
     }
+
+    limitWords(text: string, limit: number) {
+        let arrKata = text.split(" ");
+        if (arrKata.length <= limit) return text;
+
+        let tmp = "";
+        for(let i = 0; i < limit; i++){
+            if(i != limit-1){
+                tmp += arrKata[i] + " ";
+            }else{
+                tmp += arrKata[i];
+            }
+        }
+        tmp += "...";
+
+        return tmp;
+    }
 }

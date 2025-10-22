@@ -1,48 +1,52 @@
 #container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
 }
 
 .header-title {
-  font-weight: bold;
-  text-align: left;
+    font-weight: bold;
+    text-align: left;
 }
 
 #container strong {
-  font-size: 20px;
-  line-height: 26px;
+    font-size: 20px;
+    line-height: 26px;
 }
 
 #container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
 }
 
 #container a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-.c-pb-1{
+.c-pb-1 {
     padding: 0px 0px 20px 0px;
 }
-.c-flex{
+
+.c-flex {
     display: flex;
 }
-.c-ml-1{
+
+.c-ml-1 {
     margin-left: 0.3rem;
 }
-.c-ml-2{
+
+.c-ml-2 {
     margin-left: 1rem;
 }
 
-.c-flex-center{
+.c-flex-center {
     justify-content: center;
     align-items: center;
+}
+
+.c-img-full {
+    width: 100%;
 }
