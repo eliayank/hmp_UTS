@@ -46,7 +46,7 @@ export class ServiceberitaService {
                 'Semoga terus stabil ya.',
             ],
             jumlahView: [
-                "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", 
+                "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing",
             ],
         },
         {
@@ -68,7 +68,7 @@ export class ServiceberitaService {
                 'Semoga terus stabil ya.',
             ],
             jumlahView: [
-                "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", 
+                "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing",
             ],
         },
         {
@@ -112,7 +112,7 @@ export class ServiceberitaService {
                 'Semoga terus stabil ya.',
             ],
             jumlahView: [
-                "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", 
+                "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing",
             ],
         },
         {
@@ -181,7 +181,14 @@ export class ServiceberitaService {
                 "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Aileen", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing", "Kucing",
             ],
         },
+    ];  
+
+    kategori = [
+        { id: 1, name: 'Ekonomi', icon: 'cash-outline' },
+        { id: 2, name: 'Olahraga', icon: 'football-outline' },
+        { id: 3, name: 'Teknologi', icon: 'laptop-outline' }
     ];
+
     constructor() { }
 
     averageRating(rating: number[]) {
@@ -236,7 +243,7 @@ export class ServiceberitaService {
             if (this.berita[i].id == id) {
                 let lengthArr = this.berita[i].jumlahView.length;
                 for (let j = 0; j < lengthArr; j++) {
-                    if (this.berita[i].jumlahView[j] == username){
+                    if (this.berita[i].jumlahView[j] == username) {
                         return 2;
                     }
                 }
@@ -245,5 +252,13 @@ export class ServiceberitaService {
             }
         }
         return "Not Found";
+    }
+
+    getKategori(){
+        return this.kategori;
+    }
+
+    tambahBerita(newBerita:any){
+        this.berita.push(newBerita);
     }
 }

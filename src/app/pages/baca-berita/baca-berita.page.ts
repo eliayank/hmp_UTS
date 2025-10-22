@@ -25,7 +25,7 @@ export class BacaBeritaPage implements OnInit {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
       this.berita = this.service.berita.find((b) => b.id == this.id);
-      this.isFavorit = this.service.userData.favorit.some((b) => b.id === this.id);
+      this.isFavorit = this.service.userData.favorit.some((b) => b.id == this.id);
       this.ratingUser = this.service.getRatingUser(this.id);
       this.daftarKomentar = this.service.getKomentar(this.id);
     });

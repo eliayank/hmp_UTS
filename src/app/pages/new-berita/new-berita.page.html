@@ -1,13 +1,40 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>new-berita</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Buat Akun</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">new-berita</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-input type="text" label="Judul berita" labelPlacement="floating"
+                [(ngModel)]="berita.title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-select label="Kategori" [multiple]="true" placeholder="Kategori" [(ngModel)]="berita.category" >
+                <ion-select-option value="{{item.name}}" *ngFor="let item of kategori">{{item.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-textarea rows="4" label="Berita Description" labelPlacement="floating" [(ngModel)]="berita.description"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="text" label="Berita URL" labelPlacement="floating" [(ngModel)]="berita.image[0]"></ion-input>
+            <ion-input type="text" label="Berita URL" labelPlacement="floating" [(ngModel)]="berita.image[1]"></ion-input>
+            <ion-input type="text" label="Berita URL" labelPlacement="floating" [(ngModel)]="berita.image[2]"></ion-input>
+            <ion-input type="text" label="Berita URL" labelPlacement="floating" [(ngModel)]="berita.image[3]"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-button id="btnsubmit" (click)="submitBerita()">Submit</ion-button>
+            <ion-alert trigger="btnsubmit" header="Add Pasta" message="Data Succesfully stored"
+                [buttons]="alertButtons"></ion-alert>
+        </ion-item>
+    </ion-list>
 </ion-content>

@@ -39,10 +39,10 @@
                     <ion-label>Leaderboard</ion-label>
                 </ion-item>
             </ion-menu-toggle>
-            <ion-menu-toggle *ngIf="">
-                <ion-item routerLink="/leaderboard">
-                    <ion-icon name="podium-outline"></ion-icon>
-                    <ion-label>Leaderboard</ion-label>
+            <ion-menu-toggle *ngIf="isAdmin">
+                <ion-item routerLink="/new-berita">
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                    <ion-label>Buat Berita</ion-label>
                 </ion-item>
             </ion-menu-toggle>
         </div>
