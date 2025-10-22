@@ -192,9 +192,13 @@ export class ServiceberitaService {
     constructor() { }
 
     averageRating(rating: number[]) {
-        if (!rating || rating.length === 0) return 0;
-        return +(rating.reduce((a, b) => a + b, 0) / rating.length).toFixed(1);
+    if (!rating || rating.length === 0) return 0;
+    else {
+      let hasil: number = 0;
+      rating.forEach((item) => (hasil += item));
+      return +(hasil / rating.length).toFixed(1);
     }
+  }
 
     //untuk halaman favorit
     //favorit: any[] = [];
