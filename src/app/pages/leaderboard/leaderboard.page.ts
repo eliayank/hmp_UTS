@@ -13,19 +13,28 @@ export class LeaderboardPage implements OnInit {
     constructor(private router: Router, private serviceberita: ServiceberitaService) { }
 
     ngOnInit() {
+    }
+    
+    ionViewWillEnter(){
+        this.daftarBerita = [];
         let tmpDaftarBerita = this.serviceberita.berita;
-        for (let i = 0; i < tmpDaftarBerita.length; i++) {
-            let tmp = tmpDaftarBerita[i];
-            for (let j = 0 + i; j < tmpDaftarBerita.length; j++) {
-                if (tmp.jumlahView.length < tmpDaftarBerita[j].jumlahView.length) {
-                    let tmpTop = tmpDaftarBerita[j];
-                    tmpDaftarBerita[j] = tmp;
-                    tmp = tmpTop;
+        // for (let i = 0; i < tmpDaftarBerita.length; i++) {
+        //     let tmp = tmpDaftarBerita[i];
+        //     for (let j = i + 1; j < tmpDaftarBerita.length; j++) {
+        //         if (tmp.jumlahView.length < tmpDaftarBerita[j].jumlahView.length) {
+        //             let tmpTop = tmpDaftarBerita[j];
+        //             tmpDaftarBerita[j] = tmp;
+        //             tmp = tmpTop;
+    
+        //         }
+        //     }
+        //     this.daftarBerita.push(tmp);
+        // }
 
-                }
-            }
-            this.daftarBerita.push(tmp);
-        }
+        
+        this.daftarBerita = tmpDaftarBerita.sort((a, b) =>
+            b.jumlahView.length - a.jumlahView.length
+        );
     }
 
     goToBacaBerita(id: number) {
