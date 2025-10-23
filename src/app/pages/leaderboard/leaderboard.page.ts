@@ -10,10 +10,22 @@ import { Route, Router } from '@angular/router';
 export class LeaderboardPage implements OnInit {
     daftarBerita: any[] = [];
 
-    constructor(private router: Router ,private serviceberita: ServiceberitaService) { }
+    constructor(private router: Router, private serviceberita: ServiceberitaService) { }
 
     ngOnInit() {
-        this.daftarBerita = this.serviceberita.berita;
+        let tmpDaftarBerita = this.serviceberita.berita;
+        for (let i = 0; i < tmpDaftarBerita.length; i++) {
+            let tmp = tmpDaftarBerita[i];
+            for (let j = 0 + i; j < tmpDaftarBerita.length; j++) {
+                if (tmp.jumlahView.length < tmpDaftarBerita[j].jumlahView.length) {
+                    let tmpTop = tmpDaftarBerita[j];
+                    tmpDaftarBerita[j] = tmp;
+                    tmp = tmpTop;
+
+                }
+            }
+            this.daftarBerita.push(tmp);
+        }
     }
 
     goToBacaBerita(id: number) {
