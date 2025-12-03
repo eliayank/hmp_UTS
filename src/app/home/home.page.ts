@@ -3,65 +3,68 @@ import { Router } from '@angular/router';
 import { ServiceberitaService } from '../serviceberita.service';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: 'home.page.html',
-    styleUrls: ['home.page.scss'],
-    standalone: false
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+  standalone: false,
 })
 export class HomePage {
-    daftarBerita: any[] = [];
+  daftarBerita: any[] = [];
 
-    constructor(
-        private router: Router,
-        private serviceberita: ServiceberitaService
-    ) { }
+  constructor(
+    private router: Router,
+    private serviceberita: ServiceberitaService
+  ) {}
 
-    ngOnInit() {
-        this.daftarBerita = this.serviceberita.berita;
+  ngOnInit() {
+    this.daftarBerita = this.serviceberita.berita;
+  }
+
+  ionViewWillEnter() {
+    if (!this.checkLogin()) {
+      this.router.navigateByUrl('/login', { replaceUrl: true });
     }
+  }
 
-    ionViewWillEnter() {
-        if (!this.checkLogin()) {
-            this.router.navigateByUrl('/login', { replaceUrl: true });
-        }
+  checkLogin(): boolean {
+    return localStorage.getItem('app_name') !== null;
+  }
+
+  goToBacaBerita(id: number) {
+    if (
+      localStorage.getItem('username') != null ||
+      localStorage.getItem('username') != ''
+    ) {
+      let username = localStorage.getItem('username')!;
+      let hasil = this.serviceberita.tambahJumView(id, username);
+      if (hasil == 'Not Found') {
+        alert('Berita tidak ada');
+      }
+
+      this.router.navigate(['/baca-berita', id]);
+    } else {
+      alert('Harap login terlebih dahulu');
     }
+  }
 
-    checkLogin(): boolean {
-        return localStorage.getItem('loggedIn') === 'true';
+  averageRating(ratingArray: number[]): number {
+    return this.serviceberita.averageRating(ratingArray);
+  }
+
+  limitWords(text: string, limit: number) {
+    let arrKata = text.split(' ');
+    if (arrKata.length <= limit) return text;
+
+    let tmp = '';
+    for (let i = 0; i < limit; i++) {
+      if (i != limit - 1) {
+        tmp += arrKata[i] + ' ';
+      } else {
+        tmp += arrKata[i];
+      }
     }
+    tmp += '...';
 
-    goToBacaBerita(id: number) {
-        if (localStorage.getItem("username") != null || localStorage.getItem("username") != "") {
-            let username = localStorage.getItem("username")!;
-            let hasil = this.serviceberita.tambahJumView(id, username);
-            if (hasil == "Not Found") {
-                alert("Berita tidak ada")
-            }
-
-            this.router.navigate(['/baca-berita', id]);
-        } else {
-            alert("Harap login terlebih dahulu");
-        }
-    }
-
-    averageRating(ratingArray: number[]): number {
-        return this.serviceberita.averageRating(ratingArray);
-    }
-
-    limitWords(text: string, limit: number) {
-        let arrKata = text.split(" ");
-        if (arrKata.length <= limit) return text;
-
-        let tmp = "";
-        for(let i = 0; i < limit; i++){
-            if(i != limit-1){
-                tmp += arrKata[i] + " ";
-            }else{
-                tmp += arrKata[i];
-            }
-        }
-        tmp += "...";
-
-        return tmp;
-    }
+    return tmp;
+  }
 }

@@ -1,9 +1,46 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root',
 })
+
 export class ServiceberitaService {
+
+    constructor(private http: HttpClient) { }
+
+    login(email: string, pw: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    });
+    const body = new URLSearchParams();
+    body.set('email', email);
+    body.set('pw', pw);
+    const urlEncodedData = body.toString();
+
+    return this.http.post(
+      'http://localhost/UAS/login.php',
+      urlEncodedData,
+      { headers }
+    );
+  }
+  register(email: string, pw: string, name: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    });
+    const body = new URLSearchParams();
+    body.set('email', email); 
+    body.set('pw', pw);
+    body.set('name', name);
+    const urlEncodedData = body.toString();
+
+    return this.http.post(
+      'http://localhost/UAS/register.php',
+      urlEncodedData,
+      { headers }
+    );
+  }
+
     berita = [
         {
             id: 1,
@@ -196,7 +233,7 @@ export class ServiceberitaService {
         { id: 3, name: 'Teknologi', icon: 'laptop-outline' }
     ];
 
-    constructor() { }
+    
 
     averageRating(rating: number[]) {
         if (!rating || rating.length === 0) return 0;

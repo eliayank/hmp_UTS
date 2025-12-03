@@ -2,19 +2,24 @@
   <ion-grid class="grid-center">
     <ion-row>
       <ion-col size="12" size-md="8" size-lg="4">
-        <ion-card>
+        <ion-card>  
           <ion-card-header>
-            <ion-card-title style="text-align: center; font-weight: bold"
-              >Login</ion-card-title
-            >
+            <ion-card-title style="text-align: center; font-weight: bold">Register</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
             <ion-item>
               <ion-input
+                label="Name:"
+                placeholder="Enter your name"
+                 [(ngModel)]="name"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
                 label="Email:"
                 placeholder="Enter your email"
-                [(ngModel)]="email"
+                 [(ngModel)]="email"
               ></ion-input>
             </ion-item>
 
@@ -26,14 +31,24 @@
                 [(ngModel)]="password"
               ></ion-input>
             </ion-item>
+            <ion-item>
+              <ion-input
+                label="Password Conformation:"
+                type="password"
+                placeholder="Confirm your password"
+                [(ngModel)]="passwordConf"
+              ></ion-input>
+            </ion-item>
+
+            
           </ion-card-content>
 
           <div class="ion-text-center" style="margin-bottom: 16px">
-            <ion-button (click)="checkLogin()">Login</ion-button>
+            <ion-button (click)="register()">Register</ion-button>
           </div>
           <div class="ion-text-center" style="margin-bottom: 16px">
             <ion-text>
-              <a routerLink="/register">Don't have an account? Register</a>
+              <a routerLink="/login">Already have an account? Login</a>
             </ion-text>
           </div>
         </ion-card>
