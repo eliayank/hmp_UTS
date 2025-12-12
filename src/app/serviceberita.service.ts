@@ -6,41 +6,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class ServiceberitaService {
-
-    constructor(private http: HttpClient) { }
-
-    login(email: string, pw: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
-    const body = new URLSearchParams();
-    body.set('email', email);
-    body.set('pw', pw);
-    const urlEncodedData = body.toString();
-
-    return this.http.post(
-      'http://localhost/UAS/login.php',
-      urlEncodedData,
-      { headers }
-    );
-  }
-  register(email: string, pw: string, name: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
-    const body = new URLSearchParams();
-    body.set('email', email); 
-    body.set('pw', pw);
-    body.set('name', name);
-    const urlEncodedData = body.toString();
-
-    return this.http.post(
-      'http://localhost/UAS/register.php',
-      urlEncodedData,
-      { headers }
-    );
-  }
-
     berita = [
         {
             id: 1,
@@ -62,7 +27,7 @@ export class ServiceberitaService {
             ],
             jumlahView: [
                 "aileen"
-            ],
+            ],  
         },
         {
             id: 2,
@@ -233,7 +198,50 @@ export class ServiceberitaService {
         { id: 3, name: 'Teknologi', icon: 'laptop-outline' }
     ];
 
-    
+    //untuk halaman favorit
+    //favorit: any[] = [];
+    userData: {
+        rating: { [id: number]: number };
+        komentar: { [id: number]: string[] };
+        favorit: any[];
+        save: any[];
+    } = { rating: {}, komentar: {}, favorit: [], save: [] };
+
+
+    constructor(private http: HttpClient) { }
+
+    login(email: string, pw: string) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+        });
+        const body = new URLSearchParams();
+        body.set('email', email);
+        body.set('pw', pw);
+        const urlEncodedData = body.toString();
+
+        return this.http.post(
+            'http://localhost/UAS/login.php',
+            urlEncodedData,
+            { headers }
+        );
+    }
+
+    register(email: string, pw: string, name: string) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+        });
+        const body = new URLSearchParams();
+        body.set('email', email);
+        body.set('pw', pw);
+        body.set('name', name);
+        const urlEncodedData = body.toString();
+
+        return this.http.post(
+            'http://localhost/UAS/register.php',
+            urlEncodedData,
+            { headers }
+        );
+    }
 
     averageRating(rating: number[]) {
         if (!rating || rating.length === 0) return 0;
@@ -243,15 +251,6 @@ export class ServiceberitaService {
             return +(hasil / rating.length).toFixed(1);
         }
     }
-
-    //untuk halaman favorit
-    //favorit: any[] = [];
-    userData: {
-        rating: { [id: number]: number };
-        komentar: { [id: number]: string[] };
-        favorit: any[];
-        save: any[];
-    } = { rating: {}, komentar: {}, favorit: [], save: [] };
 
     tambahFavorit(berita: any) {
         const sudahAda = this.userData.favorit.find((b) => b.id == berita.id);
