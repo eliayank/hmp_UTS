@@ -27,7 +27,7 @@ export class ServiceberitaService {
             ],
             jumlahView: [
                 "aileen"
-            ],  
+            ],
         },
         {
             id: 2,
@@ -220,7 +220,7 @@ export class ServiceberitaService {
         const urlEncodedData = body.toString();
 
         return this.http.post(
-            'http://localhost/UAS/login.php',
+            'https://ubaya.cloud/hybrid/160423191/project/login.php',
             urlEncodedData,
             { headers }
         );
@@ -237,7 +237,7 @@ export class ServiceberitaService {
         const urlEncodedData = body.toString();
 
         return this.http.post(
-            'http://localhost/UAS/register.php',
+            'https://ubaya.cloud/hybrid/160423191/project/register.php',
             urlEncodedData,
             { headers }
         );
