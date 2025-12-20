@@ -249,10 +249,6 @@ export class ServiceberitaService {
         { id: 3, name: 'Teknologi', icon: 'laptop-outline' }
     ];
 
-    
-
-    
-
     //untuk halaman favorit
     //favorit: any[] = [];
     userData: {
@@ -261,6 +257,12 @@ export class ServiceberitaService {
         favorit: any[];
         save: any[];
     } = { rating: {}, komentar: {}, favorit: [], save: [] };
+
+
+    
+    
+
+    
 
     tambahFavorit(berita: any) {
         const sudahAda = this.userData.favorit.find((b) => b.id == berita.id);
