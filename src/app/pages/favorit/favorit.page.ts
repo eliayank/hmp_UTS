@@ -27,7 +27,7 @@ export class FavoritPage implements OnInit {
   }
 
   averageRating(rating: number[]) {
-    return this.service.averageRating(rating);
+    return 1;
   }
   
 }

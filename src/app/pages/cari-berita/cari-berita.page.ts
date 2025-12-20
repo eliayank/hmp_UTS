@@ -83,7 +83,7 @@ export class CariBeritaPage implements OnInit {
   }
 
   averageRating(ratingArray: number[]): number {
-    return this.beritaservice.averageRating(ratingArray);
+    return 3;
   }
 
 

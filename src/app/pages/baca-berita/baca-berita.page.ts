@@ -57,7 +57,7 @@ export class BacaBeritaPage implements OnInit {
     }
     
     averageRating(ratingArray: number[]): number {
-        return this.service.averageRating(ratingArray);
+        return 3;
     }
     
     saveBerita() {

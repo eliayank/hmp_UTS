@@ -17,7 +17,14 @@ export class HomePage {
   ) {}
 
   ngOnInit() {
-    this.daftarBerita = this.serviceberita.berita;
+    this.serviceberita.beritaList().subscribe((data) => {
+      this.daftarBerita = data.data;
+      this.daftarBerita.forEach((berita: any) => {
+        this.serviceberita.averageRating(berita.id).subscribe((r: any) => {
+          berita.avg_rating = r.result === 'success' ? r.avg_rating : null;
+        });
+      });
+    });
   }
 
   ionViewWillEnter() {
@@ -45,10 +52,6 @@ export class HomePage {
     } else {
       alert('Harap login terlebih dahulu');
     }
-  }
-
-  averageRating(ratingArray: number[]): number {
-    return this.serviceberita.averageRating(ratingArray);
   }
 
   limitWords(text: string, limit: number) {

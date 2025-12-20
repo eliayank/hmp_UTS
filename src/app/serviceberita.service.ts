@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -19,7 +20,7 @@ export class ServiceberitaService {
     const urlEncodedData = body.toString();
 
     return this.http.post(
-      'http://localhost/UAS/login.php',
+      'https://ubaya.cloud/hybrid/160423191/project/login.php',
       urlEncodedData,
       { headers }
     );
@@ -35,11 +36,26 @@ export class ServiceberitaService {
     const urlEncodedData = body.toString();
 
     return this.http.post(
-      'http://localhost/UAS/register.php',
+      'https://ubaya.cloud/hybrid/160423191/project/register.php',
       urlEncodedData,
       { headers }
     );
   }
+
+  beritaList(): Observable<any> {
+    return this.http.get('https://ubaya.cloud/hybrid/160423191/project/get_all_beritas.php');
+  }
+  
+  beritaDetail(id: number): Observable<any> {
+    return this.http.get(
+      'https://ubaya.cloud/hybrid/160423191/project/get_berita.php?id=' + id
+    );
+  }
+  averageRating(id: number) {
+       return this.http.get(
+      'https://ubaya.cloud/hybrid/160423191/project/get_rating.php?id=' + id
+    );
+    }
 
     berita = [
         {
@@ -235,14 +251,7 @@ export class ServiceberitaService {
 
     
 
-    averageRating(rating: number[]) {
-        if (!rating || rating.length === 0) return 0;
-        else {
-            let hasil: number = 0;
-            rating.forEach((item) => (hasil += item));
-            return +(hasil / rating.length).toFixed(1);
-        }
-    }
+    
 
     //untuk halaman favorit
     //favorit: any[] = [];

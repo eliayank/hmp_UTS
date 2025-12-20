@@ -29,6 +29,6 @@ export class SavePage implements OnInit {
     }
 
     averageRating(rating: number[]) {
-        return this.service.averageRating(rating);
+        return 1;
     }
 }

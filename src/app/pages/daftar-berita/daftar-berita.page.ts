@@ -13,7 +13,10 @@ export class DaftarBeritaPage implements OnInit {
         private serviceberita: ServiceberitaService) { }
 
     ngOnInit() {
-        this.daftarBerita = this.serviceberita.berita;
+        this.serviceberita.beritaList().subscribe((data) => {
+      this.daftarBerita = data;
+      //this.filteredPastas = this.pastas;
+    });
 
         this.route.params.subscribe((params) => {
             this.kategori = params['kategori'];
@@ -47,7 +50,7 @@ export class DaftarBeritaPage implements OnInit {
     }
 
     averageRating(ratingArray: number[]): number {
-        return this.serviceberita.averageRating(ratingArray);
+        return 4;
     }
 
     limitWords(text: string, limit: number) {
