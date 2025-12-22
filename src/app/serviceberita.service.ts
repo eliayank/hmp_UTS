@@ -11,50 +11,50 @@ export class ServiceberitaService {
     constructor(private http: HttpClient) { }
 
     login(email: string, pw: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
-    const body = new URLSearchParams();
-    body.set('email', email);
-    body.set('pw', pw);
-    const urlEncodedData = body.toString();
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+        });
+        const body = new URLSearchParams();
+        body.set('email', email);
+        body.set('pw', pw);
+        const urlEncodedData = body.toString();
 
-    return this.http.post(
-      'https://ubaya.cloud/hybrid/160423191/project/login.php',
-      urlEncodedData,
-      { headers }
-    );
-  }
-  register(email: string, pw: string, name: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
-    const body = new URLSearchParams();
-    body.set('email', email); 
-    body.set('pw', pw);
-    body.set('name', name);
-    const urlEncodedData = body.toString();
+        return this.http.post(
+            'https://ubaya.cloud/hybrid/160423191/project/login.php',
+            urlEncodedData,
+            { headers }
+        );
+    }
+    register(email: string, pw: string, name: string) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+        });
+        const body = new URLSearchParams();
+        body.set('email', email);
+        body.set('pw', pw);
+        body.set('name', name);
+        const urlEncodedData = body.toString();
 
-    return this.http.post(
-      'https://ubaya.cloud/hybrid/160423191/project/register.php',
-      urlEncodedData,
-      { headers }
-    );
-  }
+        return this.http.post(
+            'https://ubaya.cloud/hybrid/160423191/project/register.php',
+            urlEncodedData,
+            { headers }
+        );
+    }
 
-  beritaList(): Observable<any> {
-    return this.http.get('https://ubaya.cloud/hybrid/160423191/project/get_all_beritas.php');
-  }
-  
-  beritaDetail(id: number): Observable<any> {
-    return this.http.get(
-      'https://ubaya.cloud/hybrid/160423191/project/get_berita.php?id=' + id
-    );
-  }
-  averageRating(id: number) {
-       return this.http.get(
-      'https://ubaya.cloud/hybrid/160423191/project/get_rating.php?id=' + id
-    );
+    beritaList(): Observable<any> {
+        return this.http.get('https://ubaya.cloud/hybrid/160423191/project/get_all_beritas.php');
+    }
+
+    beritaDetail(id: number): Observable<any> {
+        return this.http.get(
+            'https://ubaya.cloud/hybrid/160423191/project/get_berita.php?id=' + id
+        );
+    }
+    averageRating(id: number) {
+        return this.http.get(
+            'https://ubaya.cloud/hybrid/160423191/project/get_rating.php?id=' + id
+        );
     }
 
     berita = [
@@ -243,11 +243,11 @@ export class ServiceberitaService {
         },
     ];
 
-    kategori = [
-        { id: 1, name: 'Ekonomi', icon: 'cash-outline' },
-        { id: 2, name: 'Olahraga', icon: 'football-outline' },
-        { id: 3, name: 'Teknologi', icon: 'laptop-outline' }
-    ];
+    // kategori = [
+    //     { id: 1, name: 'Ekonomi', icon: 'cash-outline' },
+    //     { id: 2, name: 'Olahraga', icon: 'football-outline' },
+    //     { id: 3, name: 'Teknologi', icon: 'laptop-outline' }
+    // ];
 
     //untuk halaman favorit
     //favorit: any[] = [];
@@ -257,12 +257,6 @@ export class ServiceberitaService {
         favorit: any[];
         save: any[];
     } = { rating: {}, komentar: {}, favorit: [], save: [] };
-
-
-    
-    
-
-    
 
     tambahFavorit(berita: any) {
         const sudahAda = this.userData.favorit.find((b) => b.id == berita.id);
@@ -322,11 +316,31 @@ export class ServiceberitaService {
         }
         return "Not Found";
     }
+    tambahKategori(nama: string, icon: string) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+        });
 
-    getKategori() {
-        return this.kategori;
+        const body = new URLSearchParams();
+        body.set('nama', nama);
+        body.set('icon', icon);
+
+        return this.http.post(
+            'https://ubaya.cloud/hybrid/160423191/add_kategori.php',
+            body.toString(),
+            { headers }
+        );
     }
-
+    getKategori(): Observable<any> {
+        return this.http.get(
+            'https://ubaya.cloud/hybrid/160423191/get_kategori.php'
+        );
+    }
+    getBeritaByKategori(kategori_id: number): Observable<any> {
+        return this.http.get(
+            'https://ubaya.cloud/hybrid/160423191/get_berita_by_kategori.php?kategori=' + kategori_id
+        );
+    }
     tambahBerita(newBerita: any) {
         this.berita.push(newBerita);
     }

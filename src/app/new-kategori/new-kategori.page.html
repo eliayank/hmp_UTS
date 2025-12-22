@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Buat Kategori</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-label position="floating">Nama Kategori</ion-label>
+    <ion-input [(ngModel)]="nama"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Icon (opsional)</ion-label>
+    <ion-input [(ngModel)]="icon"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" color="primary" (click)="simpanKategori()">
+    Simpan Kategori
+  </ion-button>
+
+</ion-content>

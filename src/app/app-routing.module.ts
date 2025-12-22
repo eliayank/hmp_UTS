@@ -50,6 +50,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'new-kategori',
+    loadChildren: () => import('./new-kategori/new-kategori.module').then( m => m.NewKategoriPageModule)
+  },
 
 
 ];

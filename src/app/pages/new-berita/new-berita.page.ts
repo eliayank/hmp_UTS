@@ -35,8 +35,11 @@ export class NewBeritaPage implements OnInit {
     constructor(private beritaService: ServiceberitaService) { }
 
     ngOnInit() {
-        this.kategori = this.beritaService.getKategori();
+        this.beritaService.getKategori().subscribe(data => {
+            this.kategori = data;
+        });
     }
+
 
     submitBerita() {
         let year = this.berita.publishedDate.getFullYear();

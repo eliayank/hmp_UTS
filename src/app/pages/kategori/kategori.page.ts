@@ -12,14 +12,18 @@ export class KategoriPage implements OnInit {
 
     constructor(private router: Router, private beritaservice: ServiceberitaService) { }
 
-    goToNewsList(namaKategori: string) {
-        this.router.navigate(['/daftar-berita', namaKategori]);
+    goToNewsList(kategori_id: number) {
+        this.router.navigate(['/daftar-berita', kategori_id]);
     }
 
     kategori: any[] = [];
 
     ngOnInit() {
-        this.kategori = this.beritaservice.getKategori();        
+        this.beritaservice.getKategori().subscribe(res => {
+            this.kategori = res.data;
+        });
     }
+
+
 
 }
