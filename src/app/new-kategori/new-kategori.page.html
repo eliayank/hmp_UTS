@@ -1,23 +1,31 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Buat Kategori</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/kategori"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Buat Kategori Baru</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="ion-margin-bottom">
+    <ion-item fill="outline">
+      <ion-input label="Nama Kategori" labelPlacement="floating" [(ngModel)]="nama" placeholder="Contoh: Hiburan">
+      </ion-input>
+    </ion-item>
+  </div>
 
-  <ion-item>
-    <ion-label position="floating">Nama Kategori</ion-label>
-    <ion-input [(ngModel)]="nama"></ion-input>
-  </ion-item>
+  <div class="ion-margin-bottom">
+    <ion-item fill="outline">
+      <ion-input label="Icon (Ionicons)" labelPlacement="floating" [(ngModel)]="icon"
+        placeholder="Contoh: star-outline">
+      </ion-input>
+    </ion-item>
+    <ion-note class="ion-padding-start">Cek nama icon di ionic.io/ionicons</ion-note>
+  </div>
 
-  <ion-item>
-    <ion-label position="floating">Icon (opsional)</ion-label>
-    <ion-input [(ngModel)]="icon"></ion-input>
-  </ion-item>
-
-  <ion-button expand="block" color="primary" (click)="simpanKategori()">
+  <ion-button expand="block" class="ion-margin-top" (click)="simpanKategori()">
+    <ion-icon name="save-outline" slot="start"></ion-icon>
     Simpan Kategori
   </ion-button>
-
 </ion-content>

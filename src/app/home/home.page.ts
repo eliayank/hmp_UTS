@@ -14,7 +14,7 @@ export class HomePage {
   constructor(
     private router: Router,
     private serviceberita: ServiceberitaService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.serviceberita.beritaList().subscribe((data) => {

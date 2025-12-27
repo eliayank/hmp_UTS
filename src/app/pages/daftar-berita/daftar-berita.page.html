@@ -3,34 +3,40 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="/kategori"></ion-back-button>
         </ion-buttons>
-        <ion-title>Berita {{ kategori }}</ion-title>
+        <ion-title>Berita Kategori {{ kategori }}</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
     <div id="container" class="ion-padding">
-        <ion-list *ngFor="let berita of daftarBerita" class="c-flex c-flex-center c-flex-col">
-            <ion-item>  
+        <ion-list class="c-flex c-flex-center c-flex-col">
+            <ion-item lines="none" *ngFor="let berita of daftarBerita">
                 <ion-card (click)="goToBacaBerita(berita.id)">
-                    <img [src]="berita.image[0]" alt="gambar berita" class="c-img" />
+                    <img [src]="baseUrl + berita.id + '.' + berita.ext_cover" alt="gambar berita" class="c-img"
+                        onerror="this.src='assets/no-image.png'" />
+
                     <ion-card-header>
                         <ion-card-title>{{berita.title}}</ion-card-title>
-                        <ion-item class="c-flex">
-                            <ion-card-subtitle class="c-flex c-flex-center">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-text class="c-ml-1">{{averageRating(berita.rating)}}</ion-text>
+
+                        <div class="c-flex c-mt-1"> <ion-card-subtitle class="c-flex c-flex-center">
+                                <ion-icon name="star" color="warning"></ion-icon>
+                                <ion-text class="c-ml-1">4.0</ion-text>
                             </ion-card-subtitle>
+
                             <ion-card-subtitle class="c-flex c-flex-center c-ml-2">
-                                <ion-icon name="eye-outline">
-                                </ion-icon>
-                                <ion-text class="c-ml-1">{{berita.jumlahView.length}}</ion-text>
+                                <ion-icon name="eye-outline"></ion-icon>
+                                <ion-text class="c-ml-1">
+                                    {{ berita.jum_view ?? 0 }}
+                                </ion-text>
                             </ion-card-subtitle>
-                        </ion-item>
+                        </div>
                     </ion-card-header>
+
                     <ion-card-content>
-                        {{limitWords(berita.description, 5)}}
+                        {{ limitWords(berita.description, 5) }}
                     </ion-card-content>
-                    <ion-button fill="clear" (click)="goToBacaBerita(berita.id)">Baca selengkapnya ></ion-button>
+
+                    <ion-button fill="clear">Baca selengkapnya ></ion-button>
                 </ion-card>
             </ion-item>
         </ion-list>

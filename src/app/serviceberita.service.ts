@@ -317,28 +317,24 @@ export class ServiceberitaService {
         return "Not Found";
     }
     tambahKategori(nama: string, icon: string) {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/x-www-form-urlencoded',
-        });
-
-        const body = new URLSearchParams();
-        body.set('nama', nama);
-        body.set('icon', icon);
+        // Gunakan FormData karena lebih stabil untuk integrasi dengan PHP $_POST
+        const body = new FormData();
+        body.append('nama', nama);
+        body.append('icon', icon);
 
         return this.http.post(
-            'https://ubaya.cloud/hybrid/160423191/add_kategori.php',
-            body.toString(),
-            { headers }
+            'https://ubaya.cloud/hybrid/160423191/project/add_kategori.php',
+            body
         );
     }
     getKategori(): Observable<any> {
         return this.http.get(
-            'https://ubaya.cloud/hybrid/160423191/get_kategori.php'
+            'https://ubaya.cloud/hybrid/160423191/project/get_kategori.php'
         );
     }
     getBeritaByKategori(kategori_id: number): Observable<any> {
         return this.http.get(
-            'https://ubaya.cloud/hybrid/160423191/get_berita_by_kategori.php?kategori=' + kategori_id
+            'https://ubaya.cloud/hybrid/160423191/project/get_beritas_by_kategori.php?kategori=' + kategori_id
         );
     }
     tambahBerita(newBerita: any) {

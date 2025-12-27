@@ -12,28 +12,24 @@ export class DaftarBeritaPage implements OnInit {
     constructor(private router: Router, private route: ActivatedRoute,
         private serviceberita: ServiceberitaService) { }
 
-    ngOnInit() {
-        this.serviceberita.beritaList().subscribe((data) => {
-      this.daftarBerita = data;
-      //this.filteredPastas = this.pastas;
-    });
+    baseUrl = 'http://103.16.116.155/hybrid/160423191/project/images/';
 
-        this.route.params.subscribe((params) => {
-            this.kategori = params['kategori'];
-
-            if (this.kategori) {
-                this.daftarBerita = this.serviceberita.berita.filter((item) =>
-                    item.category.some((k: string) => k === this.kategori)
-                );
-            } else {
-                this.daftarBerita = this.serviceberita.berita;
-            }
-        });
-    }
-
-    kategori: string = '';
+    kategori!: number;
     daftarBerita: any[] = [];
 
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.kategori = +params['kategori']; // Ambil ID kategori dari URL
+
+            // Panggil service
+            this.serviceberita.getBeritaByKategori(this.kategori)
+                .subscribe((res: any) => { // Tambahkan :any untuk fix error kodingan kamu
+                    if (res.result === 'success') {
+                        this.daftarBerita = res.data;
+                    }
+                });
+        });
+    }
 
     goToBacaBerita(id: number) {
         if (localStorage.getItem("username") != null || localStorage.getItem("username") != "") {

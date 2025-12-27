@@ -14,8 +14,8 @@ export class LeaderboardPage implements OnInit {
 
     ngOnInit() {
     }
-    
-    ionViewWillEnter(){
+
+    ionViewWillEnter() {
         this.daftarBerita = [];
         let tmpDaftarBerita = this.serviceberita.berita;
         // for (let i = 0; i < tmpDaftarBerita.length; i++) {
@@ -25,13 +25,13 @@ export class LeaderboardPage implements OnInit {
         //             let tmpTop = tmpDaftarBerita[j];
         //             tmpDaftarBerita[j] = tmp;
         //             tmp = tmpTop;
-    
+
         //         }
         //     }
         //     this.daftarBerita.push(tmp);
         // }
 
-        
+
         this.daftarBerita = tmpDaftarBerita.sort((a, b) =>
             b.jumlahView.length - a.jumlahView.length
         );
