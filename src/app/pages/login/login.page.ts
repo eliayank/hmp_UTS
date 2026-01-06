@@ -16,6 +16,8 @@ export class LoginPage implements OnInit {
     id = "";
 
     checkLogin() {
+        console.log(this.email);
+        console.log(this.password);
         this.sbs
             .login(this.email, this.password)
             .subscribe((response: any) => {
@@ -34,9 +36,9 @@ export class LoginPage implements OnInit {
     }
 
     constructor(private router: Router, private sbs: ServiceberitaService) {
-        this.email = localStorage.getItem('app_email') ?? '';
-        this.name = localStorage.getItem('app_name') ?? '';
-        this.id = localStorage.getItem('app_user_id') ?? '';
+        this.email = '';
+        this.name = '';
+        this.id = '';
     }
 
     ngOnInit() { }
