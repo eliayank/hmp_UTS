@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
     password = '';
     name = '';
     disabled = true;
+    id = "";
 
     checkLogin() {
         this.sbs
@@ -22,6 +23,7 @@ export class LoginPage implements OnInit {
                     alert('success');
                     this.email = response.email;
                     this.name = response.name;
+                    localStorage.setItem('app_user_id', response.id);
                     localStorage.setItem('app_email', this.email);
                     localStorage.setItem('app_name', this.name);
                     this.router.navigateByUrl('/home', { replaceUrl: true });
@@ -34,6 +36,7 @@ export class LoginPage implements OnInit {
     constructor(private router: Router, private sbs: ServiceberitaService) {
         this.email = localStorage.getItem('app_email') ?? '';
         this.name = localStorage.getItem('app_name') ?? '';
+        this.id = localStorage.getItem('app_user_id') ?? '';
     }
 
     ngOnInit() { }

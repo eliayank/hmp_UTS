@@ -10,24 +10,34 @@ import { ServiceberitaService } from 'src/app/serviceberita.service';
 export class FavoritPage implements OnInit {
 
   daftarFavorit: any[] = [];
+  userId: number = 0;
+
   constructor(
     private service: ServiceberitaService, 
     private router: Router
   ) { }
 
   ngOnInit() {
+     this.userId = Number(localStorage.getItem('app_user_id'));
   }
 
   ionViewWillEnter() {
-    this.daftarFavorit = this.service.getFavorit();
+    //this.daftarFavorit = this.service.getFavorit();
+    this.service.getListFavorit(this.userId).subscribe((res: any) => {
+      if (res.result === 'success') {
+        this.daftarFavorit = res.data;
+      } else {
+        this.daftarFavorit = [];
+      }
+    });
   }
 
   goToDetail(id: number) {
     this.router.navigate(['/baca-berita', id]);
   }
 
-  averageRating(rating: number[]) {
-    return 1;
-  }
+  // averageRating(rating: number[]) {
+  //   return 1;
+  // }
   
 }

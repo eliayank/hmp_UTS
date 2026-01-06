@@ -11,7 +11,7 @@
 <ion-content [fullscreen]="true" class="ion-padding">
     <!-- disini -->
     <div class="gambar-berita">
-        <img *ngFor="let img of berita?.image" [src]="img" alt="gambar berita" />
+        <img *ngFor="let img of berita?.image" [src]="'https://ubaya.cloud/hybrid/160423191/project/' + img.path" alt="gambar berita" />
     </div>
 
     <ion-card>
@@ -22,11 +22,11 @@
             <div class="c-flex .c-items-center">
                 <div class="c-flex c-flex-center">
                     <ion-icon name="star"></ion-icon>
-                    <ion-text class="c-ml-1">{{ averageRating(berita?.rating) }}</ion-text>
+                    <ion-text class="c-ml-1">{{ avgRating }}</ion-text>
                 </div>
                 <div class="c-flex c-flex-center">
                     <ion-icon name="eye-outline" class="c-ml-2"></ion-icon>
-                    <ion-text class="c-ml-1">{{berita.jumlahView.length}}</ion-text>
+                    <ion-text class="c-ml-1">{{berita?.jum_view}}</ion-text>
                 </div>
             </div>
         </ion-card-content>
@@ -49,18 +49,25 @@
     <ion-list *ngIf="daftarKomentar.length > 0">
         <ion-list-header>Komentar:</ion-list-header>
         <ion-item *ngFor="let c of daftarKomentar">
-            {{ c }}
+            {{ c.isi }}
         </ion-item>
     </ion-list>
 
     <ion-list class="c-flex">
-        <ion-button expand="block" (click)="toggleFavorit()" color="{{ isFavorit ? 'medium' : 'danger' }}" class="c-w-90p">
+        <ion-button expand="block" (click)="toggleFavorit()" color="{{ isFavorit ? 'medium' : 'danger' }}"
+            class="c-w-90p">
             <ion-icon [name]="isFavorit ? 'heart' : 'heart-outline'" slot="start"></ion-icon>
             {{ isFavorit ? 'Hapus dari Favorit' : 'Tambahkan ke Favorit' }}
         </ion-button>
-    
-        <ion-button expand="block" (click)="saveBerita()" color="{{ isSave ? 'medium' : 'primary' }}" class="c-ml-2 c-w-8p c-flex c-flex-center">
+
+        <ion-button expand="block" (click)="saveBerita()" color="{{ isSave ? 'medium' : 'primary' }}"
+            class="c-ml-2 c-w-8p c-flex c-flex-center">
             <ion-icon [name]="isSave ? 'save' : 'save-outline'" class="c-w-full"></ion-icon>
         </ion-button>
+
+        <ion-button color="danger" *ngIf="isPemilik()" (click)="hapusBerita()">
+            Hapus Berita
+        </ion-button>
+
     </ion-list>
 </ion-content>
