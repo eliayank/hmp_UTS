@@ -25,6 +25,9 @@ export class BacaBeritaPage implements OnInit {
     ) { }
 
     ngOnInit() {
+    }
+
+    ionViewWillEnter() {
         this.route.params.subscribe((params) => {
             this.id = params['id'];
             this.userId = Number(localStorage.getItem('app_user_id'));
@@ -53,21 +56,11 @@ export class BacaBeritaPage implements OnInit {
                     });
                 }
             });
-            // this.berita = this.service.berita.find((b) => b.id == this.id);
-            // this.isFavorit = this.service.userData.favorit.some((b) => b.id == this.id);
-            // this.isSave = this.service.userData.save.some((b) => b.id == this.id);
-            // this.ratingUser = this.service.getRatingUser(this.id);
-            // this.daftarKomentar = this.service.getKomentar(this.id);
         });
     }
 
     kirimKomentar() {
-
         if (this.komentar.trim() != '') {
-            // this.service.tambahKomentar(this.id, this.komentar);
-            // this.daftarKomentar.push(this.komentar);
-            // this.komentar = '';
-
             this.service
                 .tambahKomentar(this.userId, this.id, this.komentar)
                 .subscribe(() => {
@@ -82,39 +75,26 @@ export class BacaBeritaPage implements OnInit {
     }
 
     beriRating(nilai: number) {
-        // this.service.beriRating(this.id, nilai, this.berita);
-        // this.ratingUser = this.service.getRatingUser(this.id);
         // PERUBAHAN (UAS): simpan rating ke DATABASE
-        console.log(this.userId);
-        console.log(this.id);
-        console.log(nilai);
-        console.log("id user:" + localStorage.getItem('app_user_id'));
-        console.log("Name user:" + localStorage.getItem('app_name'));
         this.service.beriRating(this.userId, this.id, nilai).subscribe(() => {
             this.ratingUser = nilai;
-        });
 
-        // refresh avg rating
-        this.service.averageRating(this.id).subscribe((r: any) => {
-            this.avgRating = Number(r.avg_rating) || 0;
+            // refresh avg rating
+            this.service.averageRating(this.id).subscribe((r: any) => {
+                this.avgRating = Number(r.avg_rating) || 0;
+            });
         });
     }
 
     toggleFavorit() {
-
-
         if (this.isFavorit) {
             this.service.hapusFavorit(this.userId, this.id).subscribe(() => {
                 this.isFavorit = false;
             });
-            // this.service.hapusFavorit(this.berita.id);
-            // this.isFavorit = false;
         } else {
             this.service.tambahFavorit(this.userId, this.id).subscribe(() => {
                 this.isFavorit = true;
             });
-            // this.service.tambahFavorit(this.berita);
-            // this.isFavorit = true;
         }
     }
 
@@ -133,26 +113,5 @@ export class BacaBeritaPage implements OnInit {
                 }
             });
         }
-    }
-
-    // averageRating(ratingArray: number[]): number {
-    //     return 3;
-    // }
-
-    saveBerita() {
-        console.log(1);
-        if (this.isSave) {
-            console.log(2);
-            console.log(this.berita.id);
-            console.log(this.service.userData.save);
-            this.service.hapusSave(this.berita.id);
-            console.log(this.service.userData.save);
-            this.isSave = false;
-        } else {
-            console.log(3);
-            this.service.tambahSave(this.berita);
-            this.isSave = true;
-        }
-        console.log(4);
     }
 }

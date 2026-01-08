@@ -23,7 +23,4 @@ export class KategoriPage implements OnInit {
             this.kategori = res.data;
         });
     }
-
-
-
 }

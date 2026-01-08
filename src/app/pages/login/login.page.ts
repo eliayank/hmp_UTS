@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
                     localStorage.setItem('app_user_id', response.id);
                     localStorage.setItem('app_email', this.email);
                     localStorage.setItem('app_name', this.name);
+                    localStorage.setItem('app_is_admin', response.isAdmin);
                     this.router.navigateByUrl('/home', { replaceUrl: true });
                 } else {
                     alert(response.message);

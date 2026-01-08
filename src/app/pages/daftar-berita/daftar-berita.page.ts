@@ -31,18 +31,24 @@ export class DaftarBeritaPage implements OnInit {
         });
     }
 
+    ionViewWillEnter() {
+        const userId = localStorage.getItem("app_user_id");
+        if (!userId) {
+            alert("Harap login terlebih dahulu");
+            this.router.navigate(['/login']);
+            return;
+        }
+    }
+
     goToBacaBerita(id: number) {
-        if (localStorage.getItem("username") != null || localStorage.getItem("username") != "") {
-            let username = localStorage.getItem("username")!;
-            let hasil = this.serviceberita.tambahJumView(id, username);
-            if (hasil == "Not Found") {
+        this.serviceberita.tambahJumView(id).subscribe(response => {
+            if (response.result == "error") {
                 alert("Berita tidak ada")
+                return;
             }
 
             this.router.navigate(['/baca-berita', id]);
-        } else {
-            alert("Harap login terlebih dahulu");
-        }
+        });
     }
 
     averageRating(ratingArray: number[]): number {

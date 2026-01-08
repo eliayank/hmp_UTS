@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-    isAdmin = localStorage.getItem("username") == "admin"? true: false;    
+    isAdmin = Number(localStorage.getItem("app_is_admin")) == 1? true: false;    
 
     constructor() { }
 

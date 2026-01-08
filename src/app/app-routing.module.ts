@@ -42,9 +42,6 @@ const routes: Routes = [
   {
     path: 'new-berita',
     loadChildren: () => import('./pages/new-berita/new-berita.module').then( m => m.NewBeritaPageModule)
-  },  {
-    path: 'save',
-    loadChildren: () => import('./pages/save/save.module').then( m => m.SavePageModule)
   },
   {
     path: 'register',

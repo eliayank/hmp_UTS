@@ -11,7 +11,8 @@
 <ion-content [fullscreen]="true" class="ion-padding">
     <!-- disini -->
     <div class="gambar-berita">
-        <img *ngFor="let img of berita?.image" [src]="'https://ubaya.cloud/hybrid/160423191/project/' + img.path" alt="gambar berita" />
+        <img *ngFor="let img of berita?.image" [src]="'https://ubaya.cloud/hybrid/160423191/project/' + img.path"
+            alt="gambar berita" />
     </div>
 
     <ion-card>
@@ -58,11 +59,6 @@
             class="c-w-90p">
             <ion-icon [name]="isFavorit ? 'heart' : 'heart-outline'" slot="start"></ion-icon>
             {{ isFavorit ? 'Hapus dari Favorit' : 'Tambahkan ke Favorit' }}
-        </ion-button>
-
-        <ion-button expand="block" (click)="saveBerita()" color="{{ isSave ? 'medium' : 'primary' }}"
-            class="c-ml-2 c-w-8p c-flex c-flex-center">
-            <ion-icon [name]="isSave ? 'save' : 'save-outline'" class="c-w-full"></ion-icon>
         </ion-button>
 
         <ion-button color="danger" *ngIf="isPemilik()" (click)="hapusBerita()">

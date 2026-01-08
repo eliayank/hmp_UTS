@@ -12,15 +12,15 @@
         <h1>Leaderboard Top View</h1>
     </ion-text>
     <ion-list *ngFor="let berita of daftarBerita; let i = index">
-        <ion-card class="c-flex c-align-center" (click)="goToBacaBerita(berita.id)">
+        <ion-card class="c-flex c-align-center pointer" (click)="goToBacaBerita(berita.id)" >
             <h1 class="c-rank">{{i+1}}</h1>
-            <img src="{{berita.image[0]}}" class="c-w-18">
+            <img src="{{pathImages + berita.image}}" class="c-w-18">
             <div class="c-card-content c-flex c-justify-center c-flex-col">
                 <ion-card-title>{{berita.title}}</ion-card-title>
-                <ion-card-subtitle>{{berita.category}}</ion-card-subtitle>
+                <!-- <ion-card-subtitle>{{berita.category}}</ion-card-subtitle> -->
                 <div class="c-flex ">
                     <ion-icon name="eye-outline"></ion-icon>
-                    <ion-text class="c-ml-1">{{berita.jumlahView.length}}</ion-text>
+                    <ion-text class="c-ml-1">{{berita.jum_view}}</ion-text>
                 </div>
             </div>
         </ion-card>

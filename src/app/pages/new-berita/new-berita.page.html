@@ -15,24 +15,29 @@
         </ion-item>
 
         <ion-item>
-            <ion-select label="Kategori" [multiple]="true" placeholder="Kategori" [(ngModel)]="berita.category" >
-                <ion-select-option value="{{item.name}}" *ngFor="let item of kategori">{{item.name}}</ion-select-option>
+            <ion-select label="Kategori" [multiple]="true" placeholder="Kategori" [(ngModel)]="berita.category">
+                <ion-select-option value="{{item.id}}"
+                    *ngFor="let item of kategori; let i = index">{{item.nama}}</ion-select-option>
             </ion-select>
         </ion-item>
 
         <ion-item>
-            <ion-textarea rows="4" label="Berita Description" labelPlacement="floating" [(ngModel)]="berita.description"></ion-textarea>
+            <ion-textarea rows="4" label="Berita Description" labelPlacement="floating"
+                [(ngModel)]="berita.description"></ion-textarea>
         </ion-item>
 
         <ion-item>
-            <ion-input type="text" label="Berita URL" labelPlacement="floating" [(ngModel)]="berita.image[0]"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input type="text" label="Berita URL" labelPlacement="floating" [(ngModel)]="berita.image[1]"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input type="text" label="Berita URL" labelPlacement="floating" [(ngModel)]="berita.image[2]"></ion-input>
-            <ion-input type="text" label="Berita URL" labelPlacement="floating" [(ngModel)]="berita.image[3]"></ion-input>
+            <ion-input type="text" label="Berita URL" labelPlacement="floating"
+                [(ngModel)]="berita.image[0]"></ion-input>
+            <br>
+            <ion-input type="text" label="Berita URL" labelPlacement="floating"
+                [(ngModel)]="berita.image[1]"></ion-input>
+            <br>
+            <ion-input type="text" label="Berita URL" labelPlacement="floating"
+                [(ngModel)]="berita.image[2]"></ion-input>
+            <br>
+            <ion-input type="text" label="Berita URL" labelPlacement="floating"
+                [(ngModel)]="berita.image[3]"></ion-input>
         </ion-item>
 
         <ion-item>

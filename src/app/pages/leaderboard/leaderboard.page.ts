@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceberitaService } from '../../serviceberita.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-leaderboard',
@@ -9,45 +9,37 @@ import { Route, Router } from '@angular/router';
 })
 export class LeaderboardPage implements OnInit {
     daftarBerita: any[] = [];
+    pathImages = "https://ubaya.cloud/hybrid/160423191/project/";
 
     constructor(private router: Router, private serviceberita: ServiceberitaService) { }
 
     ngOnInit() {
+        console.log(localStorage.getItem("app_is_admin"));
+        let isAdmin = Number(localStorage.getItem("app_is_admin")) == 1? true: false;    
+        console.log(isAdmin);
     }
 
     ionViewWillEnter() {
-        this.daftarBerita = [];
-        let tmpDaftarBerita = this.serviceberita.berita;
-        // for (let i = 0; i < tmpDaftarBerita.length; i++) {
-        //     let tmp = tmpDaftarBerita[i];
-        //     for (let j = i + 1; j < tmpDaftarBerita.length; j++) {
-        //         if (tmp.jumlahView.length < tmpDaftarBerita[j].jumlahView.length) {
-        //             let tmpTop = tmpDaftarBerita[j];
-        //             tmpDaftarBerita[j] = tmp;
-        //             tmp = tmpTop;
+        const userId = localStorage.getItem("app_user_id");
+        if (!userId) {
+            alert("Harap login terlebih dahulu");
+            this.router.navigate(['/login']);
+            return;
+        }
 
-        //         }
-        //     }
-        //     this.daftarBerita.push(tmp);
-        // }
-
-
-        this.daftarBerita = tmpDaftarBerita.sort((a, b) =>
-            b.jumlahView.length - a.jumlahView.length
-        );
+        this.serviceberita.leaderboardTopView().subscribe(response => {
+            this.daftarBerita = response.data;
+        });
     }
 
     goToBacaBerita(id: number) {
-        if (localStorage.getItem("username") != null || localStorage.getItem("username") != "") {
-            let username = localStorage.getItem("username")!;
-            let hasil = this.serviceberita.tambahJumView(id, username);
-            if (hasil == "Not Found") {
+        this.serviceberita.tambahJumView(id).subscribe(response => {
+            if (response.result == "error") {
                 alert("Berita tidak ada")
+                return;
             }
 
             this.router.navigate(['/baca-berita', id]);
-        } else {
-            alert("Harap login terlebih dahulu");
-        }
+        });
     }
 }

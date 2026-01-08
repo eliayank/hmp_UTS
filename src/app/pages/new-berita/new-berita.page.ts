@@ -1,51 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceberitaService } from 'src/app/serviceberita.service';
 
+interface Berita {
+    title: string,
+    description: string,
+    jumView: number,
+    pembuatId?: number,
+    image: string[],
+    category: number[],
+}
+
 @Component({
     selector: 'app-new-berita',
     templateUrl: './new-berita.page.html',
     styleUrls: ['./new-berita.page.scss'],
 })
 export class NewBeritaPage implements OnInit {
-    public alertButtons = ["Ok"];
+    alertButtons: any[] = ["OK"]
     kategori: any[] = [];
 
-    berita: {
-        id: number,
-        title: string,
-        category: string[],
-        image: string[],
-        rating: string[],
-        description: string,
-        publishedDate: Date,
-        komentar: string[],
-        jumlahView: string[],
-    } = {
-            id: +this.beritaService.berita.length + 1,
-            title: "",
-            category: [],
-            image: [],
-            rating: [],
-            description: '',
-            publishedDate: new Date(),
-            komentar: [],
-            jumlahView: [],
-        }
+    berita: Berita = {
+        title: "",
+        description: "",
+        jumView: 0,
+        pembuatId: Number(localStorage.getItem("app_user_id")),
+        image: [],
+        category: [],
+    }
 
     constructor(private beritaService: ServiceberitaService) { }
 
     ngOnInit() {
+    }
+
+    ionViewWillEnter() {
         this.beritaService.getKategori().subscribe(data => {
             this.kategori = data;
         });
     }
 
-
     submitBerita() {
-        let year = this.berita.publishedDate.getFullYear();
-        let month = this.berita.publishedDate.getMonth();
-        let day = this.berita.publishedDate.getDay();
-        this.berita.publishedDate = new Date(year + "-" + month + "-" + day);
-        this.beritaService.tambahBerita(this.berita);
     }
 }
