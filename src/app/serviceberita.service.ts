@@ -170,7 +170,7 @@ export class ServiceberitaService {
 
     getKategori(): Observable<any> {
         return this.http.get(
-            'https://ubaya.cloud/hybrid/160423191/project/get_kategori.php'
+            'https://ubaya.cloud/hybrid/160423191/project/get_kategoris.php'
         );
     }
 
@@ -182,7 +182,7 @@ export class ServiceberitaService {
     }
 
     tambahBerita(newBerita: any) {
-        
+
     }
 
     hapusBerita(id: number, userId: number): Observable<any> {

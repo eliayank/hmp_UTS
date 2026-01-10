@@ -51,10 +51,6 @@ export class DaftarBeritaPage implements OnInit {
         });
     }
 
-    averageRating(ratingArray: number[]): number {
-        return 4;
-    }
-
     limitWords(text: string, limit: number) {
         let arrKata = text.split(" ");
         if (arrKata.length <= limit) return text;

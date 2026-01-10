@@ -49,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: 'new-kategori',
-    loadChildren: () => import('./new-kategori/new-kategori.module').then( m => m.NewKategoriPageModule)
+    loadChildren: () => import('./pages/new-kategori/new-kategori.module').then( m => m.NewKategoriPageModule)
   },
 
 

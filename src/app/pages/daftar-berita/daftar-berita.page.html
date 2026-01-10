@@ -12,15 +12,16 @@
         <ion-list class="c-flex c-flex-center c-flex-col">
             <ion-item lines="none" *ngFor="let berita of daftarBerita">
                 <ion-card (click)="goToBacaBerita(berita.id)">
-                    <img [src]="baseUrl + berita.id + '.' + berita.ext_cover" alt="gambar berita" class="c-img"
-                        onerror="this.src='assets/no-image.png'" />
-
+                    <img [src]="'https://ubaya.cloud/hybrid/160423191/project/' + berita.cover_path"
+                        onerror="this.src='assets/no-image.png'" class="c-img" />
                     <ion-card-header>
                         <ion-card-title>{{berita.title}}</ion-card-title>
 
                         <div class="c-flex c-mt-1"> <ion-card-subtitle class="c-flex c-flex-center">
                                 <ion-icon name="star" color="warning"></ion-icon>
-                                <ion-text class="c-ml-1">4.0</ion-text>
+                                <ion-text class="c-ml-1">
+                                    {{ berita.avg_rating ?? 0 }}
+                                </ion-text>
                             </ion-card-subtitle>
 
                             <ion-card-subtitle class="c-flex c-flex-center c-ml-2">

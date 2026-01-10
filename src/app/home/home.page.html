@@ -11,8 +11,9 @@
     <div id="container" class="ion-padding">
         <ion-list lines="none">
             <ion-card *ngFor="let berita of daftarBerita" (click)="goToBacaBerita(berita.id)">
-                <img [src]="'https://ubaya.cloud/hybrid/160423191/project/images/cover/' + berita.id + '.' + berita.ext_cover + '?v=' + berita.updated_at"
-                    class="c-img-full" alt="gambar berita {{ berita.id }}" />
+                <img [src]="'https://ubaya.cloud/hybrid/160423191/project/' + berita.cover_path"
+                    onerror="this.src='assets/no-image.png'" class="c-img-full" />
+
                 <div class="c-pb-1">
                     <ion-card-header>
                         <ion-card-title>{{ berita.title }}</ion-card-title>
@@ -31,7 +32,7 @@
                     <ion-card-content>
                         {{ limitWords(berita.description, 20) }}
                     </ion-card-content>
-                    <ion-button fill="clear" >
+                    <ion-button fill="clear">
                         Baca selengkapnya >
                     </ion-button>
                 </div>
