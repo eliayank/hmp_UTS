@@ -181,16 +181,18 @@ export class ServiceberitaService {
         );
     }
 
-    tambahBerita(newBerita: any){
+    tambahBerita(newBerita: any) {
         
     }
 
     hapusBerita(id: number, userId: number): Observable<any> {
-        return this.http.get(
-            'https://ubaya.cloud/hybrid/160423191/project/delete_berita.php?id=' +
-            id +
-            '&user_id=' +
-            userId
+        const body = new FormData();
+        body.append('id', id.toString());
+        body.append('user_id', id.toString());
+
+        return this.http.post(
+            'https://ubaya.cloud/hybrid/160423191/project/delete_berita.php',
+            body
         );
     }
 

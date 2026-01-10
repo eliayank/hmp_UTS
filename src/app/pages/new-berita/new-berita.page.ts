@@ -18,6 +18,7 @@ interface Berita {
 export class NewBeritaPage implements OnInit {
     alertButtons: any[] = ["OK"]
     kategori: any[] = [];
+    images: string[] = ["", "", "", ""];
 
     berita: Berita = {
         title: "",
@@ -30,15 +31,26 @@ export class NewBeritaPage implements OnInit {
 
     constructor(private beritaService: ServiceberitaService) { }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     ionViewWillEnter() {
         this.beritaService.getKategori().subscribe(data => {
-            this.kategori = data;
+            this.kategori = data.data;
         });
     }
 
     submitBerita() {
+        for (let i = 0; i < this.images.length; i++) {
+            if (this.images[i] != "") {
+                this.berita.image.push(this.images[i]);
+            }
+        }
+
+        this.beritaService.tambahBerita(this.berita);
+    }
+
+    isiImg(i: any) {
+        let id = "#url" + i;
+        
     }
 }
