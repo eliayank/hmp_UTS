@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+interface Berita {
+    title: string,
+    description: string,
+    pembuatId: number,
+    image: string[],
+    category: number[],
+}
+
 @Injectable({
     providedIn: 'root',
 })
@@ -181,8 +189,24 @@ export class ServiceberitaService {
         );
     }
 
-    tambahBerita(newBerita: any) {
+    tambahBerita(newBerita: Berita) {
+        const body = new FormData();
+        body.append('title', newBerita.title);
+        body.append('description', newBerita.description);
+        body.append('pembuatId', newBerita.pembuatId.toString());
 
+        for (let i = 0; i < newBerita.image.length; i++) {
+            body.append('image' + i, newBerita.image[i]);
+        }
+
+        for (let i = 0; i < newBerita.category.length; i++) {
+            body.append('categoryId' + i, newBerita.category[i].toString());
+        }
+
+        return this.http.post(
+            'https://ubaya.cloud/hybrid/160423191/project/add_berita.php',
+            body
+        );
     }
 
     hapusBerita(id: number, userId: number): Observable<any> {

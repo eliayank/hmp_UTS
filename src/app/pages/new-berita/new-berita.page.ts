@@ -4,8 +4,7 @@ import { ServiceberitaService } from 'src/app/serviceberita.service';
 interface Berita {
     title: string,
     description: string,
-    jumView: number,
-    pembuatId?: number,
+    pembuatId: number,
     image: string[],
     category: number[],
 }
@@ -23,7 +22,6 @@ export class NewBeritaPage implements OnInit {
     berita: Berita = {
         title: "",
         description: "",
-        jumView: 0,
         pembuatId: Number(localStorage.getItem("app_user_id")),
         image: [],
         category: [],
@@ -47,10 +45,5 @@ export class NewBeritaPage implements OnInit {
         }
 
         this.beritaService.tambahBerita(this.berita);
-    }
-
-    isiImg(i: any) {
-        let id = "#url" + i;
-        
     }
 }
