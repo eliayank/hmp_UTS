@@ -61,6 +61,12 @@ export class ServiceberitaService {
         );
     }
 
+    getCoverPath(id: number): Observable<any> {
+        return this.http.get(
+            'https://ubaya.cloud/hybrid/160423191/project/get_cover_beritas.php?id=' + id
+        );
+    }
+
     averageRating(id: number): Observable<any> {
         return this.http.get(
             'https://ubaya.cloud/hybrid/160423191/project/get_rating.php?id=' + id

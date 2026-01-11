@@ -31,6 +31,11 @@ export class HomePage {
                     berita.avg_rating = r.result === 'success' ? r.avg_rating : null;
                 });
             });
+            this.daftarBerita.forEach((berita: any) => {
+                this.serviceberita.getCoverPath(berita.id).subscribe((r: any) => {
+                    berita.cover_path = r.result === 'success' ? r.data[0].cover_path : null;
+                });
+            });
         });
     }
 
