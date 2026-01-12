@@ -12,7 +12,7 @@
         <ion-list *ngFor="let berita of daftarFavorit" lines="none" class="c-flex c-flex-center c-flex-col">
             <ion-item>
                 <ion-card (click)="goToDetail(berita.id)">
-                    <img *ngIf="berita.image?.length" [src]="'https://ubaya.cloud/hybrid/160423191/project/' + berita.image[0].path" alt="gambar berita" onerror="this.src='assets/no-image.png'" />
+                    <img *ngIf="berita.image?.length" [src]="berita.image[0].path.startsWith('http') ? berita.image[0].path : 'https://ubaya.cloud/hybrid/160423191/project/' + berita.image[0].path" alt="gambar berita" onerror="this.src='assets/no-image.png'" />
                     <ion-card-header>
                         <ion-card-title>{{ berita.title }}</ion-card-title>
                         <ion-card-subtitle>

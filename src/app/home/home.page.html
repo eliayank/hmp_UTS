@@ -11,7 +11,7 @@
     <div id="container" class="ion-padding">
         <ion-list lines="none">
             <ion-card *ngFor="let berita of daftarBerita" (click)="goToBacaBerita(berita.id)">
-                <img [src]="'https://ubaya.cloud/hybrid/160423191/project/' + berita.cover_path"
+                <img *ngIf="berita.cover_path" [src]="berita.cover_path.startsWith('http') ? berita.cover_path : 'https://ubaya.cloud/hybrid/160423191/project/' + berita.cover_path"
                     onerror="this.src='assets/no-image.png'" class="c-img-full" />
 
                 <div class="c-pb-1">

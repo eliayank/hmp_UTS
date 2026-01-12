@@ -11,8 +11,9 @@
 <ion-content [fullscreen]="true" class="ion-padding">
     <!-- disini -->
     <div class="gambar-berita">
-        <img *ngFor="let img of berita?.image" [src]="'https://ubaya.cloud/hybrid/160423191/project/' + img.path"
-            alt="gambar berita" />
+        <img *ngFor="let img of berita?.image"
+            [src]="img.path.startsWith('http') ? img.path : 'https://ubaya.cloud/hybrid/160423191/project/' + img.path"
+            alt=" gambar berita" />
     </div>
 
     <ion-card>

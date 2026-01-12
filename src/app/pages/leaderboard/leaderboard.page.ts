@@ -13,13 +13,10 @@ export class LeaderboardPage implements OnInit {
 
     constructor(private router: Router, private serviceberita: ServiceberitaService) { }
 
-    ngOnInit() {
-        console.log(localStorage.getItem("app_is_admin"));
-        let isAdmin = Number(localStorage.getItem("app_is_admin")) == 1? true: false;    
-        console.log(isAdmin);
-    }
+    ngOnInit() {}
 
     ionViewWillEnter() {
+        // Mengecek apakah user sudah login
         const userId = localStorage.getItem("app_user_id");
         if (!userId) {
             alert("Harap login terlebih dahulu");
@@ -27,11 +24,13 @@ export class LeaderboardPage implements OnInit {
             return;
         }
 
+        // Menampilkan data top view
         this.serviceberita.leaderboardTopView().subscribe(response => {
             this.daftarBerita = response.data;
         });
     }
 
+    // Method untuk menampilkan baca berita serta menambah jumlah view berita yang dipilih
     goToBacaBerita(id: number) {
         this.serviceberita.tambahJumView(id).subscribe(response => {
             if (response.result == "error") {

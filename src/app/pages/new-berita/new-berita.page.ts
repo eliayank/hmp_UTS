@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ServiceberitaService } from 'src/app/serviceberita.service';
 
 interface Berita {
@@ -15,7 +16,6 @@ interface Berita {
     styleUrls: ['./new-berita.page.scss'],
 })
 export class NewBeritaPage implements OnInit {
-    alertButtons: any[] = ["OK"]
     kategori: any[] = [];
     images: string[] = ["", "", "", ""];
 
@@ -27,7 +27,7 @@ export class NewBeritaPage implements OnInit {
         category: [],
     }
 
-    constructor(private beritaService: ServiceberitaService) { }
+    constructor(private beritaService: ServiceberitaService, private router: Router) { }
 
     ngOnInit() { }
 
@@ -38,12 +38,35 @@ export class NewBeritaPage implements OnInit {
     }
 
     submitBerita() {
+        if (this.berita.title == "") {
+            alert("Harap mengisi title");
+            return;
+        } else if (this.berita.category) {
+            alert("Harap mengisi kategori");
+            return;
+        }
+
+        this.images = [];
         for (let i = 0; i < this.images.length; i++) {
             if (this.images[i] != "") {
                 this.berita.image.push(this.images[i]);
             }
         }
 
-        this.beritaService.tambahBerita(this.berita);
+        if (this.berita.image) {
+            alert("Harap memasukan cover");
+            return;
+        }
+
+        this.beritaService.tambahBerita(this.berita).subscribe(r => {
+            if (r.result == "success") {
+                alert("Berhasil menambahkan berita");
+                this.router.navigateByUrl('/home', { replaceUrl: true });
+            } else if (r.result == "Sudah Ada") {
+                alert(r.msg);
+            } else {
+                alert(r.msg);
+            }
+        });
     }
 }

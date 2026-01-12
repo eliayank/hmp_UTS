@@ -24,13 +24,13 @@ export class BacaBeritaPage implements OnInit {
         private service: ServiceberitaService
     ) { }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     ionViewWillEnter() {
         this.route.params.subscribe((params) => {
             this.id = params['id'];
             this.userId = Number(localStorage.getItem('app_user_id'));
+            console.log(this.userId);
             this.service.beritaDetail(this.id).subscribe((res: any) => {
                 if (res.result === 'success') {
                     this.berita = res;
@@ -104,6 +104,7 @@ export class BacaBeritaPage implements OnInit {
 
     hapusBerita() {
         if (confirm('Yakin ingin menghapus berita ini?')) {
+            console.log(this.id);
             this.service.hapusBerita(this.id, this.userId).subscribe((res: any) => {
                 if (res.result === 'success') {
                     alert('Berita berhasil dihapus');

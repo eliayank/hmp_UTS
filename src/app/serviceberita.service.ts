@@ -195,14 +195,16 @@ export class ServiceberitaService {
         );
     }
 
-    tambahBerita(newBerita: Berita) {
+    tambahBerita(newBerita: Berita): Observable<any> {
         const body = new FormData();
         body.append('title', newBerita.title);
         body.append('description', newBerita.description);
         body.append('pembuatId', newBerita.pembuatId.toString());
 
         for (let i = 0; i < newBerita.image.length; i++) {
-            body.append('image' + i, newBerita.image[i]);
+            if (newBerita.image[i] != "") {
+                body.append('image' + i, newBerita.image[i]);
+            }
         }
 
         for (let i = 0; i < newBerita.category.length; i++) {
@@ -218,7 +220,7 @@ export class ServiceberitaService {
     hapusBerita(id: number, userId: number): Observable<any> {
         const body = new FormData();
         body.append('id', id.toString());
-        body.append('user_id', id.toString());
+        body.append('user_id', userId.toString());
 
         return this.http.post(
             'https://ubaya.cloud/hybrid/160423191/project/delete_berita.php',

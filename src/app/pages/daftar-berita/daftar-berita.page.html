@@ -12,7 +12,7 @@
         <ion-list class="c-flex c-flex-center c-flex-col">
             <ion-item lines="none" *ngFor="let berita of daftarBerita">
                 <ion-card (click)="goToBacaBerita(berita.id)">
-                    <img [src]="'https://ubaya.cloud/hybrid/160423191/project/' + berita.cover_path"
+                    <img [src]="berita.cover_path.startsWith('http') ? berita.cover_path : 'https://ubaya.cloud/hybrid/160423191/project/' + berita.cover_path"
                         onerror="this.src='assets/no-image.png'" class="c-img" />
                     <ion-card-header>
                         <ion-card-title>{{berita.title}}</ion-card-title>
