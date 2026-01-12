@@ -7,49 +7,33 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-    <!-- Search Section -->
-    <div class="search-container">
-        <ion-searchbar [(ngModel)]="search" placeholder="Cari berita..." (ionInput)="onSearchInput($event)">
-        </ion-searchbar>
-        <!-- Search Results -->
-        <div class="results-container" *ngIf="search && search.length > 0">
-            <div class="results-header">
-                <ion-text color="medium">
-                    <p>{{ filteredNews.length }} hasil untuk "{{ search }}"</p>
-                </ion-text>
-            </div>
-
-            <!-- No Results -->
-            <div class="no-results" *ngIf="filteredNews.length === 0">
-                <ion-icon name="search-outline" size="large"></ion-icon>
-                <h3>Tidak ada hasil ditemukan</h3>
-                <p>Coba gunakan kata kunci yang berbeda</p>
-            </div>
-
-            <!-- News Results -->
-            <ion-list *ngIf="filteredNews.length > 0">
-                <ion-item *ngFor="let news of filteredNews" button (click)="goToBacaBerita(news.id)"
-                    (keydown.enter)="goToBacaBerita(news.id)" class="news-item">
-                    <ion-thumbnail slot="start">
-                        <img [src]="news.image[0].startsWith('http') ? news.image[0] : 'https://ubaya.cloud/hybrid/160423191/project/' + news.image[0]"
-                            [alt]="news.title" />
-                    </ion-thumbnail>
-
-                    <ion-label>
-                        <h2>{{ news.title }}</h2>
-                        <p>{{ news.description }}</p>
-                        <div>
-                            <ion-chip color="primary" outline="true">
-                                <ion-label>{{ news.category }}</ion-label>
-                            </ion-chip>
-                            <ion-text color="medium">
-                                <small>{{ news.publishedDate | date:'dd MMM yyyy' }}</small>
-                            </ion-text>
-                        </div>
-                    </ion-label>
-                </ion-item>
-            </ion-list>
+<ion-content [fullscreen]="true" class="ion-padding">
+    <ion-searchbar [(ngModel)]="search" placeholder="Cari berita..." (ionInput)="onSearchInput($event)">
+    </ion-searchbar>
+    <div *ngIf="search && search.length > 0">
+        <ion-text color="medium">
+            <p>{{ filteredNews.length }} hasil untuk "{{ search }}"</p>
+        </ion-text>
+        <div *ngIf="filteredNews.length === 0" class="ion-text-center ion-padding">
+            <ion-icon name="search-outline" size="large"></ion-icon>
+            <h3>Tidak ada hasil</h3>
+            <p>Coba kata kunci lain</p>
         </div>
+        <ion-list *ngIf="filteredNews.length > 0">
+            <ion-item *ngFor="let berita of filteredNews" button (click)="goToBacaBerita(berita.id)">
+                <ion-thumbnail slot="start">
+                    <img *ngIf="berita.cover_path"
+                        [src]="'https://ubaya.cloud/hybrid/160423191/project/' + berita.cover_path" />
+                    <img *ngIf="!berita.cover_path" src="assets/no-image.png" />
+                </ion-thumbnail>
+                <ion-label>
+                    <h2>{{ berita.title }}</h2>
+                    <p>{{ limitWords(berita.description, 12) }}</p>
+                    <ion-text color="medium">
+                        <small>{{ berita.publishedDate | date:'dd MMM yyyy' }}</small>
+                    </ion-text>
+                </ion-label>
+            </ion-item>
+        </ion-list>
     </div>
 </ion-content>

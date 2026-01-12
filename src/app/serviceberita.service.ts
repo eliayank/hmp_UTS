@@ -182,7 +182,7 @@ export class ServiceberitaService {
         );
     }
 
-    getKategori(): Observable<any> {
+    getKategoris(): Observable<any> {
         return this.http.get(
             'https://ubaya.cloud/hybrid/160423191/project/get_kategoris.php'
         );
