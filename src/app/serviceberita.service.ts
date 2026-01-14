@@ -188,6 +188,13 @@ export class ServiceberitaService {
         );
     }
 
+    getCategoryName(kategori_id: number): Observable<any> {
+        return this.http.get(
+            'https://ubaya.cloud/hybrid/160423191/project/get_category_name.php?kategori=' +
+            kategori_id
+        );
+    }
+
     getBeritaByKategori(kategori_id: number): Observable<any> {
         return this.http.get(
             'https://ubaya.cloud/hybrid/160423191/project/get_beritas_by_kategori.php?kategori=' +
@@ -203,7 +210,7 @@ export class ServiceberitaService {
 
         for (let i = 0; i < newBerita.image.length; i++) {
             if (newBerita.image[i] != "") {
-                body.append('image' + i, newBerita.image[i]);
+                body.append('images' + i, newBerita.image[i]);
             }
         }
 
@@ -231,4 +238,15 @@ export class ServiceberitaService {
     leaderboardTopView(): Observable<any> {
         return this.http.get('https://ubaya.cloud/hybrid/160423191/project/leaderboard_top_view.php');
     }
+
+    uploadImage(p_name:string, p_base64:string)
+{
+  const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+  const body = new URLSearchParams();
+  body.set('name', p_name.toString());
+  body.set('base64', p_base64.toString());
+  const urlEncodedData = body.toString();
+  return this.http.post("https://ubaya.cloud/hybrid/160423191/upload_image.php", urlEncodedData, { headers });
+}
+
 }

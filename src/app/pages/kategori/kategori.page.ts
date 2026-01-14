@@ -19,8 +19,12 @@ export class KategoriPage implements OnInit {
     kategori: any[] = [];
 
     ngOnInit() {
-        this.beritaservice.getKategori().subscribe(res => {
+        this.beritaservice.getKategoris().subscribe(res => {
             this.kategori = res.data;
+            for (let kat of this.kategori) {
+                kat.nama = kat.nama.charAt(0).toUpperCase() +
+  kat.nama.slice(1).toLowerCase();
+            }
         });
     }
 }

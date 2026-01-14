@@ -22,7 +22,6 @@ export class LoginPage implements OnInit {
             .login(this.email, this.password)
             .subscribe((response: any) => {
                 if (response.result === 'success') {
-                    alert('success');
                     this.email = response.email;
                     this.name = response.name;
                     localStorage.setItem('app_user_id', response.id);

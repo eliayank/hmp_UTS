@@ -15,11 +15,20 @@ export class DaftarBeritaPage implements OnInit {
     baseUrl = 'http://103.16.116.155/hybrid/160423191/project/images/';
 
     kategori!: number;
+    kategori_name !: string;
     daftarBerita: any[] = [];
 
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.kategori = +params['kategori']; // Ambil ID kategori dari URL
+
+            this.serviceberita.getCategoryName(this.kategori)
+                .subscribe((res: any) => { 
+                    if (res.result === 'success') {
+                        this.kategori_name = res.data[0].nama.charAt(0).toUpperCase() +
+  res.data[0].nama.slice(1).toLowerCase();
+                    }
+                });
 
             // Panggil service
             this.serviceberita.getBeritaByKategori(this.kategori)
