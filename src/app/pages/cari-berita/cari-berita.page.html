@@ -23,7 +23,7 @@
             <ion-item *ngFor="let berita of filteredNews" button (click)="goToBacaBerita(berita.id)">
                 <ion-thumbnail slot="start">
                     <img *ngIf="berita.cover_path"
-                        [src]="'https://ubaya.cloud/hybrid/160423191/project/' + berita.cover_path" />
+                        [src]="berita.cover_path.startsWith('http') ? berita.cover_path : 'https://ubaya.cloud/hybrid/160423191/project/' + berita.cover_path" />
                     <img *ngIf="!berita.cover_path" src="assets/no-image.png" />
                 </ion-thumbnail>
                 <ion-label>

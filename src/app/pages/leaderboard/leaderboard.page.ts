@@ -26,7 +26,9 @@ export class LeaderboardPage implements OnInit {
 
         // Menampilkan data top view
         this.serviceberita.leaderboardTopView().subscribe(response => {
+            console.log(response);
             this.daftarBerita = response.data;
+            console.log(this.daftarBerita);
         });
     }
 
