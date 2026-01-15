@@ -30,7 +30,11 @@ export class NewBeritaPage implements OnInit {
 
     constructor(private beritaService: ServiceberitaService, private router: Router) { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        setInterval(() => {
+            console.log(this.images);
+        }, 3000);
+    }
 
     ionViewWillEnter() {
         this.beritaService.getKategoris().subscribe(data => {
@@ -46,22 +50,18 @@ export class NewBeritaPage implements OnInit {
             alert("Harap mengisi kategori");
             return;
         }
-
-        this.images = [];
+        
         for (let i = 0; i < this.images.length; i++) {
             if (this.images[i] != "") {
                 this.berita.image.push(this.images[i]);
             }
         }
-
-        if (!this.berita.image) {
+        
+        if (this.berita.image.length == 0) {
             alert("Harap memasukan cover");
             return;
         }
-
-          
-
-
+        
         this.beritaService.tambahBerita(this.berita).subscribe(r => {
             if (r.result == "success") {
                 alert("Berhasil menambahkan berita");
@@ -71,6 +71,7 @@ export class NewBeritaPage implements OnInit {
             } else {
                 alert(r.msg);
             }
+            this.images = [];
         });
     }
 }
