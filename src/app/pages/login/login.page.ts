@@ -16,8 +16,6 @@ export class LoginPage implements OnInit {
     id = "";
 
     checkLogin() {
-        console.log(this.email);
-        console.log(this.password);
         this.sbs
             .login(this.email, this.password)
             .subscribe((response: any) => {
